@@ -1,0 +1,102 @@
+* {
+    background-color: black;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    font-family: "arial";
+}
+
+.gauge_main,
+.white,
+.black,
+.tick,
+.gradient,
+.chamber,
+.meter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 280px;
+    width: 280px;
+    transform: translate(-50%, -50%);
+    transition: 0.4s;
+}
+
+.meter {
+    background-color: white;
+    height: 281px;
+    width: 281px;
+    border-radius: 50%;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    z-index: 1000;
+}
+
+.tick,
+.chamber {
+    width: 160px;
+    height: 5px;
+    background: linear-gradient(to right, white 50%, black 50%);
+    z-index: 110;
+    transform-origin: 50%;
+}
+
+.tick {
+    z-index: 1001;
+}
+
+.chamber {
+    left: 50%;
+    background: white;
+    width: 280px;
+    height: 5px;
+    transform-origin: 50%;
+    transform: translate(-50%, -50%)rotateZ(calc(var(--i)*-20deg));
+    z-index: 20;
+}
+
+.white,
+.black,
+.gradient {
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.white {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    z-index: 30;
+}
+
+.gradient {
+    height: 280px;
+    width: 280px;
+    background: linear-gradient(0deg, rgba(29, 216, 255, 1) 0%, rgba(4, 106, 255, 1) 50%, rgba(208, 212, 255, 1) 50%);
+}
+
+.black {
+    height: 200px;
+    width: 200px;
+    background: linear-gradient(to top, black 50%, rgba(208, 212, 255, 1) 50%);
+    box-shadow: 0px 0px 0px 5px white;
+    z-index: 25;
+}
+
+@keyframes load {
+    from {
+        transform: translate(-50%, -50%)rotateZ(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%)rotateZ(-180deg);
+    }
+}
+
+input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    transform: translate(-50%, 50%);
+}

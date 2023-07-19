@@ -1,0 +1,168 @@
+{
+    "Quantanium": {
+        "Price": 23748,
+        "Bonus": {
+            "HUR-L1": 0.02,
+            "HUR-L2": 0.02,
+            "ARC-L1": 0.03,
+            "ARC-L2": 0.03,
+            "MIC-L2": 0.01
+        }
+    },
+    "Gold": {
+        "Price": 7769,
+        "Bonus": {
+            "HUR-L1": -0.03,
+            "HUR-L2": 0.01,
+            "CRU-L1": -0.06,
+            "ARC-L2": 0.07,
+            "ARC-L4": -0.04,
+            "MIC-L1": 0.01,
+            "MIC-L2": 0.09
+        }
+    },
+    "Taranite": {
+        "Price": 7591,
+        "Bonus": {
+            "HUR-L2": -0.03,
+            "ARC-L1": -0.06,
+            "ARC-L4": 0.05
+        }
+    },
+    "Bexalite": {
+        "Price": 7589,
+        "Bonus": {
+            "HUR-L1": -0.02,
+            "CRU-L1": -0.06,
+            "ARC-L2": 0.02,
+            "MIC-L2": 0.09,
+            "MIC-L5": 0.12
+        }
+    },
+    "Diamond": {
+        "Price": 4453,
+        "Bonus": {
+        }
+    },
+    "Borase": {
+        "Price": 3479,
+        "Bonus": {
+            "HUR-L1": 0.01,
+            "ARC-L2": 0.02,
+            "MIC-L2": -0.03,
+            "MIC-L5": 0.09
+        }
+    },
+    "Laranite": {
+        "Price": 2993,
+        "Bonus": {
+            "HUR-L1": 0.02,
+            "HUR-L2": -0.01,
+            "CRU-L1": -0.08,
+            "ARC-L1": -0.02,
+            "MIC-L1": 0.02,
+            "MIC-L2": -0.01
+        }
+    },
+    "Hephaestanite": {
+        "Price": 2721,
+        "Bonus": {
+            "CRU-L1": -0.02,
+            "ARC-L1": -0.04,
+            "ARC-L2": -0.08,
+            "ARC-L4": -0.05,
+            "MIC-L5": 0.08
+        }
+    },
+    "Agricium": {
+        "Price": 2707,
+        "Bonus": {
+            "HUR-L1": -0.08,
+            "HUR-L2": -0.02,
+            "ARC-L4": -0.04,
+            "MIC-L1": 0.08
+        }
+    },
+    "Beryl": {
+        "Price": 2673,
+        "Bonus": {
+            "HUR-L2": 0.01,
+            "CRU-L1": 0.07,
+            "ARC-L1": 0.07,
+            "ARC-L4": -0.04,
+            "MIC-L1": -0.06,
+            "MIC-L2": -0.08,
+            "MIC-L5": 0.07
+        }
+    },
+    "Titanium": {
+        "Price": 499,
+        "Bonus": {
+            "CRU-L1": -0.01,
+            "ARC-L1": 0.05,
+            "ARC-L2": 0.03,
+            "ARC-L4": -0.02,
+            "MIC-L2": 0.06,
+            "MIC-L5": 0.13
+        }
+    },
+    "Tungsten": {
+        "Price": 414,
+        "Bonus": {
+            "HUR-L1": 0.04,
+            "CRU-L1": 0.02,
+            "ARC-L2": -0.06,
+            "ARC-L4": -0.05,
+            "MIC-L2": 0.09
+        }
+    },
+    "Quartz": {
+        "Price": 396,
+        "Bonus": {
+            "ARC-L1": 0.11,
+            "ARC-L4": -0.02,
+            "MIC-L1": -0.03
+        }
+    },
+    "Iron": {
+        "Price": 393,
+        "Bonus": {
+            "HUR-L1": -0.05,
+            "CRU-L1": 0.02,
+            "ARC-L1": 0.01,
+            "MIC-L5": 0.08
+        }
+    },
+    "Copper": {
+        "Price": 375,
+        "Bonus": {
+            "HUR-L1": -0.05,
+            "HUR-L2": -0.03,
+            "ARC-L2": 0.06,
+            "ARC-L4": -0.04,
+            "MIC-L1": 0.04,
+            "MIC-L2": 0.02
+        }
+    },
+    "Corundum": {
+        "Price": 375,
+        "Bonus": {
+            "HUR-L1": -0.05,
+            "CRU-L1": 0.07,
+            "ARC-L1": -0.04,
+            "ARC-L2": -0.03,
+            "ARC-L4": -0.09,
+            "MIC-L1": 0.02,
+            "MIC-L2": 0.06
+        }
+    },
+    "Aluminum": {
+        "Price": 324,
+        "Bonus": {
+            "HUR-L1": -0.04,
+            "ARC-L1": -0.05,
+            "ARC-L4": -0.03,
+            "MIC-L1": 0.07
+        }
+    }
+}

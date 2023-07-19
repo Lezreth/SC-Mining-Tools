@@ -1,0 +1,37 @@
+[data-theme="light"] {
+    --color-main-bg-top: rgb(255, 255, 255);
+    --color-main-bg-bottom: rgb(182, 210, 230);
+    --color-main-fg: rgb(32, 35, 37);
+    --color-main-drop-shadow: rgb(134, 134, 134);
+
+    --color-table-border: rgb(128, 128, 128);
+    --color-borders-gridlines: rgb(85, 85, 85);
+    --color-bg-table-even-rows: rgb(202, 202, 202);
+
+    --color-bg-inputbox-focus: rgb(113, 158, 206);
+    --color-inputbox-shadow: rgb(0, 0, 0);
+
+    --color-bg-forms: rgb(255, 255, 255);
+    --color-border-forms: rgb(43, 47, 49);
+
+    --color-bg-button-positive: rgb(0, 126, 25);
+    --color-bg-button-negative: rgb(150, 0, 0);
+    --color-fg-button: rgb(232, 230, 227);
+
+    --color-bg-tierQ: rgb(165, 165, 0);
+    --color-bg-tier1: rgb(0, 150, 0);
+    --color-bg-tier2: rgb(149, 105, 0);
+    --color-bg-tier3: rgb(100, 0, 0);
+
+    --color-tierQ: rgb(255, 255, 0);
+    --color-tier1: rgb(0, 255, 0);
+    --color-tier2: rgb(225, 224, 0);
+    --color-tier3: rgb(255, 0, 0);
+
+    --color-bg-collapsible: rgb(255, 255, 255);
+    --color-bg-collapsible-hover: rgb(202, 202, 202);
+    --color-bg-collapsible-content: rgb(202, 202, 202);
+    --color-fg-collapsible: rgb(0, 0, 0);
+
+    --color-bg-meter: var(--color-bg-table-even-rows);
+}

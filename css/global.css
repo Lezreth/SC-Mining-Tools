@@ -1,0 +1,247 @@
+/* @import url("/css/Toast.css"); */
+
+:root {
+    --color-main-bg-top: rgb(47, 56, 61);
+    --color-main-bg-bottom: rgb(32, 35, 37);
+    --color-main-fg: rgb(186, 182, 175);
+    --color-main-drop-shadow: rgb(0, 0, 0);
+
+    --color-table-border: rgb(128, 128, 128);
+    --color-borders-gridlines: rgb(85, 85, 85);
+    --color-bg-table-even-rows: rgb(34, 34, 34);
+
+    --color-bg-inputbox-focus: rgb(0, 0, 0);
+    --color-inputbox-shadow: rgb(113, 158, 206);
+
+    --color-bg-forms: rgb(43, 47, 49);
+    --color-border-forms: rgb(102, 102, 102);
+
+    --color-bg-button-positive: rgb(0, 126, 25);
+    --color-bg-button-negative: rgb(150, 0, 0);
+    --color-fg-button: rgb(232, 230, 227);
+
+    --color-bg-tierQ: rgb(105, 105, 0);
+    --color-bg-tier1: rgb(0, 100, 0);
+    --color-bg-tier2: rgb(109, 65, 0);
+    --color-bg-tier3: rgb(60, 0, 0);
+
+    --color-tierQ: rgb(235, 235, 0);
+    --color-tier1: rgb(0, 235, 0);
+    --color-tier2: rgb(205, 204, 0);
+    --color-tier3: rgb(225, 0, 0);
+
+    --color-bg-collapsible: rgb(100, 100, 100);
+    --color-bg-collapsible-hover: rgb(85, 85, 85);
+    --color-bg-collapsible-content: rgb(85, 85, 85);
+    --color-fg-collapsible: rgb(180, 107, 223);
+
+    --color-bg-meter: rgb(43, 47, 49);
+
+    --color-cargoBox-full: rgb(150, 150, 150);
+    --color-cargoBox-icon: rgb(0, 0, 0);
+
+    --color-svgIcons: rgb(150, 150, 15);
+
+    --color-drag-container: rgb(120, 0, 218);
+}
+
+body {
+    /* background: linear-gradient(to right bottom, rgb(47, 52, 65) 50%, rgb(33, 37, 49) 50%); */
+    background: linear-gradient(to right bottom, var(--color-main-bg-top) 50%, var(--color-main-bg-bottom) 50%);
+    background-attachment: fixed;
+    /* background-color: var(--color-main-bg); */
+    color: var(--color-main-fg);
+    font-size: 100%;
+    /* display: flex; */
+}
+
+table {
+    border-color: var(--color-table-border);
+    border-style: inset;
+    text-align: center;
+    margin: 2px;
+}
+
+fieldset {
+    background-color: var(--color-bg-forms);
+    border-radius: 10px;
+    border-color: var(--color-border-forms);
+    margin: 10px;
+    padding: 10px;
+    /* filter: drop-shadow(5px 5px 10px var(--color-main-drop-shadow)); */
+    box-shadow: 5px 5px 10px var(--color-main-drop-shadow);
+    /* float: left; */
+}
+
+.flat {
+    box-shadow: unset;
+}
+
+table th:first-child {
+    text-align: left;
+}
+
+table,
+th,
+td {
+    border: 1px solid var(--color-borders-gridlines);
+    border-collapse: collapse;
+    padding: 2px 6px;
+}
+
+.stacked {
+    display: flex;
+    width: max-content;
+}
+
+.header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.RawMaterials {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+}
+
+.Material {
+    padding: 10px;
+    width: 100px;
+}
+
+.MaterialInfo {
+    width: 80px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-bg-table-even-rows);
+}
+
+input {
+    width: 50px;
+    background-color: var(--color-main-bg-bottom);
+    color: var(--color-main-fg);
+    border-radius: 0.5rem;
+    height: 1.5rem;
+}
+
+input:focus {
+    outline: none !important;
+    border: 1px solid var(--color-bg-inputbox-focus);
+    box-shadow: 0 0 10px var(--color-inputbox-shadow);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.flexParent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* margin: auto; */
+    /* flex-flow: row wrap; */
+    /* justify-content: space-around; */
+}
+
+.flexChild {
+    border-color: var(--color-borders-gridlines);
+}
+
+.flexGrower {
+    flex-grow: 1;
+}
+
+legend {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.totals {
+    float: none;
+}
+
+select {
+    background-color: var(--color-main-bg-top);
+    color: var(--color-main-fg);
+}
+
+/* Mineral Tier Colors */
+.TierQ {
+    background-color: var(--color-bg-tierQ);
+    color: var(--color-tierQ);
+}
+
+.Tier1 {
+    background-color: var(--color-bg-tier1);
+    color: var(--color-tier1);
+}
+
+.Tier2 {
+    background-color: var(--color-bg-tier2);
+    color: var(--color-tier2);
+}
+
+.Tier3 {
+    background-color: var(--color-bg-tier3);
+    color: var(--color-tier3);
+}
+
+.cargoLoadHandle {
+    fill: var(--color-svgIcons);
+}
+
+.refineryTable {
+    justify-content: center;
+}
+
+.Hide {
+    overflow: hidden;
+    font-size: 0;
+    opacity: 0;
+    /* opacity: 0; */
+    /* transform: translate(-100%); */
+    /* display: none; */
+    /* visibility: hidden; */
+    transition: 0.3s;
+}
+
+/***************************/
+/*****  Drag and drop  *****/
+[draggable] {
+    user-select: none;
+}
+
+.dragContainer {
+    display: grid;
+    min-height: 4rem;
+    min-width: 4rem;
+    border: 1px dashed var(--color-drag-container);
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+.dragBox {
+    border: 3px solid var(--color-border-forms);
+    border-radius: 0.5rem;
+    padding: 10px;
+    margin: 0.25rem 0;
+    cursor: move;
+}
+
+.is-dragging {
+    scale: 1.05;
+    background: var(--color-bg-collapsible);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+div:empty:not(:focus):before {
+    content: attr(data-text);
+    color: var(--color-cargoBox-full);
+}
+
+/***************************/

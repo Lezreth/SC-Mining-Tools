@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Star Citizen Mining Toolset</title>
+    <link rel="stylesheet" type="text/css" href="/css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/collapsible.css" />
+    <link rel="stylesheet" type="text/css" href="/css/dragdropfacets.css" />
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/lightmode.css" />
+    <link rel="stylesheet" type="text/css" href="/css/select.css" />
+    <link rel="stylesheet" type="text/css" href="/css/switch.css" />
+    <link rel="stylesheet" type="text/css" href="/css/themeswitch.css" />
+    <link rel="stylesheet" type="text/css" href="/css/Tooltip.css" />
+</head>
+
+<body>
+    <div class="header">
+        <header>
+            <h2>Star Citizen Mining Toolset</h2>
+            <noscript>
+                <h1 class="flexChild">This page requires JavaScript to be enabled to function correctly</h1>
+            </noscript>
+        </header>
+        <button onclick="hideMineralLoad()" class="ButtonBase ButtonPositive" style="height: 30px;">Toggle Mineral
+            Load</button>
+        <button class="ButtonBase ButtonPositive" onclick="AddBoxes('ship_CargoGridVisual', 26)"
+            style="height: 30px;">Add
+            Boxes</button>
+        <button class="ButtonBase ButtonPositive" onclick="FillBoxes('ship_CargoGridVisual', 0)"
+            style="height: 30px;">0</button>
+        <button class="ButtonBase ButtonPositive" onclick="FillBoxes('ship_CargoGridVisual', 5)"
+            style="height: 30px;">5</button>
+        <button class="ButtonBase ButtonPositive" onclick="FillBoxes('ship_CargoGridVisual', 10)"
+            style="height: 30px;">10</button>
+        <button class="ButtonBase ButtonPositive" onclick="FillBoxes('ship_CargoGridVisual', 15)"
+            style="height: 30px;">15</button>
+        <button class="ButtonBase ButtonPositive" onclick="FillBoxes('ship_CargoGridVisual', 20)"
+            style="height: 30px;">20</button>
+        <nav>
+            <div>
+                <a href="#">Home</a>
+                <a href="about.html">About</a>
+                <a href="register.html">Register</a>
+                <a href="#">Sign in</a>
+                <label class="themeswitch" id="theme-switch" for="checkbox_theme">
+                    <input type="checkbox" id="checkbox_theme">
+                    <span class="themeslider"></span>
+                </label>
+            </div>
+        </nav>
+    </div>
+    <div class="flexParent">
+        <fieldset id="MineralLoad" class="flexChild">
+            <legend>Mineral Load</legend>
+            <div class="stacked">
+                <fieldset>
+                    <legend>Location</legend>
+                    <span class="custom-dropdown">
+                        <select id="Refineries">
+                        </select>
+                    </span>
+                </fieldset>
+                <fieldset>
+                    <legend>Processing Method</legend>
+                    <span class="custom-dropdown">
+                        <select class="custom-dropdown" id="processing_method">
+                        </select>
+                    </span>
+                </fieldset>
+            </div>
+            <div class="stacked">
+                <!--  Raw Materials Table:  Contents are dynamically added to this element  -->
+                <table class="RawMaterials" id="RefineryRawMaterials">
+                    <tr>
+                        <th class="Material">Material</th>
+                        <th class="MaterialInfo">Units</th>
+                        <th class="MaterialInfo">Refine?</th>
+                        <th class="MaterialInfo">Multiplier</th>
+                        <th class="MaterialInfo">Cost</th>
+                        <th class="MaterialInfo">Price/SCU</th>
+                        <th class="MaterialInfo">Yield</th>
+                        <th class="MaterialInfo">Duration</th>
+                        <th class="MaterialInfo">Profit</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="stacked">
+                <fieldset class="stacked flat">
+                    <button class="ButtonBase ButtonPositive" id="submit-order" onclick="AddNewWorkOrder()">
+                        <svg>
+                            <use href="/img/icons.svg#Confirm" />
+                        </svg>
+                        <span>Submit Work Order</span>
+                    </button>
+                    <button class="ButtonBase ButtonNegative" id="clear-table" onclick="ClearInputs()">
+                        <svg>
+                            <use href="/img/icons.svg#Clear" />
+                        </svg>
+                        <span>Clear All Inputs</span>
+                    </button>
+                </fieldset>
+            </div>
+        </fieldset>
+        <fieldset class="flexChild flexGrower">
+            <legend>Refinery</legend>
+            <fieldset class="totals flat">
+                <legend>Order Stats</legend>
+                <table>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Profit</th>
+                    </tr>
+                    <tr>
+                        <td>8 SCU</td>
+                        <td>4,000 aUEC</td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset class="work-orders">
+                <legend>Work Orders</legend>
+                <!--  Work Order Table: Contents are dynamically added to this element  -->
+                <div id="WorkOrders" class="dragContainer" data-text="Refinery orders appear here."></div>
+            </fieldset>
+        </fieldset>
+        <fieldset class="flexChild flexGrower">
+            <legend>Ship Cargo</legend>
+            <table>
+                <tr>
+                    <td>Select Cargo Ship</td>
+                    <td>
+                        <span class="custom-dropdown">
+                            <select class="round" id="cargo_ships">
+                            </select>
+                        </span>
+                    </td>
+                    <td>
+                        <button class="ButtonBase ButtonPositive" data-tooltip="Edit cargo ship list">
+                            <svg>
+                                <use href="/img/icons.svg#ListIcon" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <button class="ButtonBase ButtonPositive" data-tooltip="Create new shipment with selected ship">
+                <svg>
+                    <use href="/img/icons.svg#Plus" />
+                </svg>
+                <span>Create Shipment</span>
+            </button>
+            <fieldset id="ship_Main" class="flat">
+                <legend id="ship_Title">Avenger Titan</legend>
+                <div class="shipDelete">
+                    <span data-tooltip="Delete this shipment">
+                        <button class="ButtonBase ButtonNegative">
+                            <svg>
+                                <use href="/img/icons.svg#Delete" />
+                            </svg>
+                        </button>
+                    </span>
+                </div>
+                <fieldset class="flat">
+                    <legend id="cargoGrid">Cargo grid: 5/20 SCU</legend>
+                    <svg id="ship_CargoGridVisual" class="cargoBox emptyCargoBox" xmlns="http://www.w3.org/2000/svg">
+                    </svg>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mineral</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ship_TotalMineralCount">
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Refinery orders on ship</legend>
+                    <!--  Ship Order Table: Contents are dynamically added to this element  -->
+                    <div id="ship_Orders" class="dragContainer" data-text="Drop refinery orders here."></div>
+                </fieldset>
+            </fieldset>
+        </fieldset>
+        <div id="ShipListCustomizer" class="flexChild flexGrower">
+            <fieldset class="flexParent flexChild">
+                <legend>Move ships you own to the right</legend>
+                <fieldset class="flat left flexGrower">
+                    <legend>Available Ships</legend>
+                    <div id="AvailableShips" class="dragContainer" data-text="Available cargo ships."></div>
+                </fieldset>
+                <fieldset class="flat right flexGrower">
+                    <legend>Owned Ships</legend>
+                    <div id="OwnedShips" class="dragContainer" data-text="Drop ships you own here."></div>
+                </fieldset>
+                <br />
+                <div class="stacked right">
+                    <button class="ButtonBase ButtonPositive">
+                        <svg>
+                            <use href="/img/icons.svg#Confirm" />
+                        </svg>
+                        <span>Save Changes</span>
+                    </button>
+                    <button class="ButtonBase ButtonNegative">
+                        <svg>
+                            <use href="/img/icons.svg#Clear" />
+                        </svg>
+                        <span>Cancel</span>
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <!--  Work Order Template: Contents to dynamically add to the refinery order list  -->
+    <template id="WorkOrderTemplate">
+        <div id="order_Main" draggable="true" class="task">
+            <span>
+                <svg class="fullCargoBox refineryBox">
+                    <use href="/img/icons.svg#Boxes" />
+                </svg>
+            </span>
+            <label id="order_Label" for="order_Toggle" class="orderlabel">
+                <table class="refineryTable">
+                    <tbody id="order_Head"></tbody>
+                </table>
+            </label>
+            <input type="checkbox" id="order_Toggle" class="AccordionControl">
+            <table class="collapsible">
+                <tbody id="order_Body">
+                    <tr>
+                        <th>Mineral</th>
+                        <th>Cost</th>
+                        <th>Yield</th>
+                        <th>Value</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <!--  Ship Cargo Grid Template: Contents to dynamically generate a ship's cargo grid  -->
+    <template id="ShipCargoGrid">
+    </template>
+    <script src="/js/DetectTheme.js"></script>
+    <script src="/js/LightMode.js"></script>
+    <script src="/js/Support.js"></script>
+    <script src="/js/MathFunctions.js"></script>
+    <script src="/js/DataInitialization.js"></script>
+    <script src="/js/validation.js"></script>
+</body>
+
+</html>

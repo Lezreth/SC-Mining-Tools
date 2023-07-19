@@ -1,0 +1,555 @@
+[
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "AvengerTitan",
+        "Name": "Avenger Titan",
+        "Capacity": 8
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Hammerhead",
+        "Name": "Hammerhead",
+        "Capacity": 40
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Idris-K",
+        "Name": "Idris-K",
+        "Capacity": 995
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Idris-P",
+        "Name": "Idris-P",
+        "Capacity": 995
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Nautilus",
+        "Name": "Nautilus",
+        "Capacity": 64
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Reclaimer",
+        "Name": "Reclaimer",
+        "Capacity": 300
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Redeemer",
+        "Name": "Redeemer",
+        "Capacity": 2
+    },
+    {
+        "MFDCode": "AEGS",
+        "Manufacturer": "Aegis Dynamics",
+        "ShipCode": "Vulcan",
+        "Name": "Vulcan",
+        "Capacity": 12
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "C8XPiscesExpedition",
+        "Name": "C8X Pisces Expedition",
+        "Capacity": 4
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "Carrack",
+        "Name": "Carrack",
+        "Capacity": 456
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "Crucible",
+        "Name": "Crucible",
+        "Capacity": 230
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "F7CHornet",
+        "Name": "F7C Hornet",
+        "Capacity": 2
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "Liberator",
+        "Name": "Liberator",
+        "Capacity": 30
+    },
+    {
+        "MFDCode": "ANVL",
+        "Manufacturer": "Anvil Aerospace",
+        "ShipCode": "Valkyrie",
+        "Name": "Valkyrie",
+        "Capacity": 30
+    },
+    {
+        "MFDCode": "ARGO",
+        "Manufacturer": "Argo Astronautics",
+        "ShipCode": "MPUVCargo",
+        "Name": "MPUV Cargo",
+        "Capacity": 2
+    },
+    {
+        "MFDCode": "ARGO",
+        "Manufacturer": "Argo Astronautics",
+        "ShipCode": "RAFT",
+        "Name": "RAFT",
+        "Capacity": 96
+    },
+    {
+        "MFDCode": "ARGO",
+        "Manufacturer": "Argo Astronautics",
+        "ShipCode": "SRV",
+        "Name": "SRV",
+        "Capacity": 10
+    },
+    {
+        "MFDCode": "BANU",
+        "Manufacturer": "Banu Souli",
+        "ShipCode": "Merchantman",
+        "Name": "Merchantman",
+        "Capacity": 2880
+    },
+    {
+        "MFDCode": "CNOU",
+        "Manufacturer": "Consolidated Outland",
+        "ShipCode": "MustangAlpha",
+        "Name": "Mustang Alpha",
+        "Capacity": 4
+    },
+    {
+        "MFDCode": "CNOU",
+        "Manufacturer": "Consolidated Outland",
+        "ShipCode": "Nomad",
+        "Name": "Nomad",
+        "Capacity": 24
+    },
+    {
+        "MFDCode": "CNOU",
+        "Manufacturer": "Consolidated Outland",
+        "ShipCode": "Pioneer",
+        "Name": "Pioneer",
+        "Capacity": 600
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "A2HerculesStarlifter",
+        "Name": "A2 Hercules Starlifter",
+        "Capacity": 216
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "C1Spirit",
+        "Name": "C1 Spirit",
+        "Capacity": 48
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "C2HerculesStarlifter",
+        "Name": "C2 Hercules Starlifter",
+        "Capacity": 696
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "GenesisStarliner",
+        "Name": "Genesis Starliner",
+        "Capacity": 300
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "M2HerculesStarlifter",
+        "Name": "M2 Hercules Starlifter",
+        "Capacity": 522
+    },
+    {
+        "MFDCode": "CRUS",
+        "Manufacturer": "Crusader Industries",
+        "ShipCode": "MercuryStarRunner",
+        "Name": "Mercury Star Runner",
+        "Capacity": 114
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "Caterpillar",
+        "Name": "Caterpillar",
+        "Capacity": 576
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "Corsair",
+        "Name": "Corsair",
+        "Capacity": 72
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "CutlassBlack",
+        "Name": "Cutlass Black",
+        "Capacity": 46
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "CutlassBlue",
+        "Name": "Cutlass Blue",
+        "Capacity": 12
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "CutlassRed",
+        "Name": "Cutlass Red",
+        "Capacity": 12
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "Cutter",
+        "Name": "Cutter",
+        "Capacity": 4
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "Kraken",
+        "Name": "Kraken",
+        "Capacity": 3792
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "KrakenPrivateer",
+        "Name": "Kraken Privateer",
+        "Capacity": 768
+    },
+    {
+        "MFDCode": "DRAK",
+        "Manufacturer": "Drake Interplanetary",
+        "ShipCode": "Vulture",
+        "Name": "Vulture",
+        "Capacity": 12
+    },
+    {
+        "MFDCode": "GAMA",
+        "Manufacturer": "Gatac Manufacture",
+        "ShipCode": "Railen",
+        "Name": "Railen",
+        "Capacity": 320
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "Endeavor",
+        "Name": "Endeavor",
+        "Capacity": 500
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "Expanse",
+        "Name": "Expanse",
+        "Capacity": 128
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "Freelancer",
+        "Name": "Freelancer",
+        "Capacity": 66
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "FreelancerDUR",
+        "Name": "Freelancer DUR",
+        "Capacity": 36
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "FreelancerMAX",
+        "Name": "Freelancer MAX",
+        "Capacity": 120
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "FreelancerMIS",
+        "Name": "Freelancer MIS",
+        "Capacity": 36
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "HullA",
+        "Name": "Hull A",
+        "Capacity": 64
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "HullB",
+        "Name": "Hull B",
+        "Capacity": 384
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "HullC",
+        "Name": "Hull C",
+        "Capacity": 4608
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "HullD",
+        "Name": "Hull D",
+        "Capacity": 20736
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "HullE",
+        "Name": "Hull E",
+        "Capacity": 98304
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "Odyssey",
+        "Name": "Odyssey",
+        "Capacity": 252
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "ReliantKore",
+        "Name": "Reliant Kore",
+        "Capacity": 6
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "ReliantTana",
+        "Name": "Reliant Tana",
+        "Capacity": 1
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "Starfarer",
+        "Name": "Starfarer",
+        "Capacity": 291
+    },
+    {
+        "MFDCode": "MISC",
+        "Manufacturer": "Musashi Industrial and Starflight Concern",
+        "ShipCode": "StarfarerGemini",
+        "Name": "Starfarer Gemini",
+        "Capacity": 291
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "100i",
+        "Name": "100i",
+        "Capacity": 2
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "125a",
+        "Name": "125a",
+        "Capacity": 2
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "135c",
+        "Name": "135c",
+        "Capacity": 6
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "300i",
+        "Name": "300i",
+        "Capacity": 8
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "315p",
+        "Name": "315p",
+        "Capacity": 12
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "325a",
+        "Name": "325a",
+        "Capacity": 4
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "350r",
+        "Name": "350r",
+        "Capacity": 4
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "400i",
+        "Name": "400i",
+        "Capacity": 42
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "600iExplorer",
+        "Name": "600i Explorer",
+        "Capacity": 44
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "600iTouring",
+        "Name": "600i Touring",
+        "Capacity": 20
+    },
+    {
+        "MFDCode": "ORIG",
+        "Manufacturer": "Origin Jumpworks",
+        "ShipCode": "890Jump",
+        "Name": "890 Jump",
+        "Capacity": 388
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ApolloMedivac",
+        "Name": "Apollo Medivac",
+        "Capacity": 28
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ApolloTriage",
+        "Name": "Apollo Triage",
+        "Capacity": 28
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "AuroraCL",
+        "Name": "Aurora CL",
+        "Capacity": 6
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "AuroraES",
+        "Name": "Aurora ES",
+        "Capacity": 3
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "AuroraLN",
+        "Name": "Aurora LN",
+        "Capacity": 3
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "AuroraLX",
+        "Name": "Aurora LX",
+        "Capacity": 3
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "AuroraMR",
+        "Name": "Aurora MR",
+        "Capacity": 3
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ConstellationAndromeda",
+        "Name": "Constellation Andromeda",
+        "Capacity": 96
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ConstellationAquila",
+        "Name": "Constellation Aquila",
+        "Capacity": 96
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ConstellationPhoenix",
+        "Name": "Constellation Phoenix",
+        "Capacity": 96
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "ConstellationTaurus",
+        "Name": "Constellation Taurus",
+        "Capacity": 174
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "Galaxy",
+        "Name": "Galaxy",
+        "Capacity": 64
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "Orion",
+        "Name": "Orion",
+        "Capacity": 384
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "Perseus",
+        "Name": "Perseus",
+        "Capacity": 50
+    },
+    {
+        "MFDCode": "RSI",
+        "Manufacturer": "Roberts Space Industries",
+        "ShipCode": "Polaris",
+        "Name": "Polaris",
+        "Capacity": 216
+    }
+]

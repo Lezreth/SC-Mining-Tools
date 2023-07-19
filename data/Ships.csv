@@ -1,0 +1,80 @@
+﻿MFDCode,Manufacturer,ShipCode,Name,Capacity
+AEGS,Aegis Dynamics,AvengerTitan,Avenger Titan,8
+AEGS,Aegis Dynamics,Hammerhead,Hammerhead,40
+AEGS,Aegis Dynamics,Idris-K,Idris-K,995
+AEGS,Aegis Dynamics,Idris-P,Idris-P,995
+AEGS,Aegis Dynamics,Nautilus,Nautilus,64
+AEGS,Aegis Dynamics,Reclaimer,Reclaimer,300
+AEGS,Aegis Dynamics,Redeemer,Redeemer,2
+AEGS,Aegis Dynamics,Vulcan,Vulcan,12
+ANVL,Anvil Aerospace,C8XPiscesExpedition,C8X Pisces Expedition,4
+ANVL,Anvil Aerospace,Carrack,Carrack,456
+ANVL,Anvil Aerospace,Crucible,Crucible,230
+ANVL,Anvil Aerospace,F7CHornet,F7C Hornet,2
+ANVL,Anvil Aerospace,Liberator,Liberator,30
+ANVL,Anvil Aerospace,Valkyrie,Valkyrie,30
+ARGO,Argo Astronautics,MPUVCargo,MPUV Cargo,2
+ARGO,Argo Astronautics,RAFT,RAFT,96
+ARGO,Argo Astronautics,SRV,SRV,10
+BANU,Banu Souli,Merchantman,Merchantman,2880
+CNOU,Consolidated Outland,MustangAlpha,Mustang Alpha,4
+CNOU,Consolidated Outland,Nomad,Nomad,24
+CNOU,Consolidated Outland,Pioneer,Pioneer,600
+CRUS,Crusader Industries,A2HerculesStarlifter,A2 Hercules Starlifter,216
+CRUS,Crusader Industries,C1Spirit,C1 Spirit,48
+CRUS,Crusader Industries,C2HerculesStarlifter,C2 Hercules Starlifter,696
+CRUS,Crusader Industries,GenesisStarliner,Genesis Starliner,300
+CRUS,Crusader Industries,M2HerculesStarlifter,M2 Hercules Starlifter,522
+CRUS,Crusader Industries,MercuryStarRunner,Mercury Star Runner,114
+DRAK,Drake Interplanetary,Caterpillar,Caterpillar,576
+DRAK,Drake Interplanetary,Corsair,Corsair,72
+DRAK,Drake Interplanetary,CutlassBlack,Cutlass Black,46
+DRAK,Drake Interplanetary,CutlassBlue,Cutlass Blue,12
+DRAK,Drake Interplanetary,CutlassRed,Cutlass Red,12
+DRAK,Drake Interplanetary,Cutter,Cutter,4
+DRAK,Drake Interplanetary,Kraken,Kraken,3792
+DRAK,Drake Interplanetary,KrakenPrivateer,Kraken Privateer,768
+DRAK,Drake Interplanetary,Vulture,Vulture,12
+GAMA,Gatac Manufacture,Railen,Railen,320
+MISC,Musashi Industrial and Starflight Concern,Endeavor,Endeavor,500
+MISC,Musashi Industrial and Starflight Concern,Expanse,Expanse,128
+MISC,Musashi Industrial and Starflight Concern,Freelancer,Freelancer,66
+MISC,Musashi Industrial and Starflight Concern,FreelancerDUR,Freelancer DUR,36
+MISC,Musashi Industrial and Starflight Concern,FreelancerMAX,Freelancer MAX,120
+MISC,Musashi Industrial and Starflight Concern,FreelancerMIS,Freelancer MIS,36
+MISC,Musashi Industrial and Starflight Concern,HullA,Hull A,64
+MISC,Musashi Industrial and Starflight Concern,HullB,Hull B,384
+MISC,Musashi Industrial and Starflight Concern,HullC,Hull C,4608
+MISC,Musashi Industrial and Starflight Concern,HullD,Hull D,20736
+MISC,Musashi Industrial and Starflight Concern,HullE,Hull E,98304
+MISC,Musashi Industrial and Starflight Concern,Odyssey,Odyssey,252
+MISC,Musashi Industrial and Starflight Concern,ReliantKore,Reliant Kore,6
+MISC,Musashi Industrial and Starflight Concern,ReliantTana,Reliant Tana,1
+MISC,Musashi Industrial and Starflight Concern,Starfarer,Starfarer,291
+MISC,Musashi Industrial and Starflight Concern,StarfarerGemini,Starfarer Gemini,291
+ORIG,Origin Jumpworks,100i,100i,2
+ORIG,Origin Jumpworks,125a,125a,2
+ORIG,Origin Jumpworks,135c,135c,6
+ORIG,Origin Jumpworks,300i,300i,8
+ORIG,Origin Jumpworks,315p,315p,12
+ORIG,Origin Jumpworks,325a,325a,4
+ORIG,Origin Jumpworks,350r,350r,4
+ORIG,Origin Jumpworks,400i,400i,42
+ORIG,Origin Jumpworks,600iExplorer,600i Explorer,44
+ORIG,Origin Jumpworks,600iTouring,600i Touring,20
+ORIG,Origin Jumpworks,890Jump,890 Jump,388
+RSI,Roberts Space Industries,ApolloMedivac,Apollo Medivac,28
+RSI,Roberts Space Industries,ApolloTriage,Apollo Triage,28
+RSI,Roberts Space Industries,AuroraCL,Aurora CL,6
+RSI,Roberts Space Industries,AuroraES,Aurora ES,3
+RSI,Roberts Space Industries,AuroraLN,Aurora LN,3
+RSI,Roberts Space Industries,AuroraLX,Aurora LX,3
+RSI,Roberts Space Industries,AuroraMR,Aurora MR,3
+RSI,Roberts Space Industries,ConstellationAndromeda,Constellation Andromeda,96
+RSI,Roberts Space Industries,ConstellationAquila,Constellation Aquila,96
+RSI,Roberts Space Industries,ConstellationPhoenix,Constellation Phoenix,96
+RSI,Roberts Space Industries,ConstellationTaurus,Constellation Taurus,174
+RSI,Roberts Space Industries,Galaxy,Galaxy,64
+RSI,Roberts Space Industries,Orion,Orion,384
+RSI,Roberts Space Industries,Perseus,Perseus,50
+RSI,Roberts Space Industries,Polaris,Polaris,216

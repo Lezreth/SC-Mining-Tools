@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SVG Testing</title>
+</head>
+
+<body>
+    <style>
+        :root {
+            background-color: black;
+            color: white;
+            --color-empty: rgb(10, 10, 10);
+            --color-full: rgb(150, 150, 150);
+        }
+
+        .emptyBox {
+            fill: var(--color-empty);
+        }
+
+        .fullBox {
+            fill: var(--color-full);
+        }
+
+        .svgIcons {
+            fill: purple;
+            --iconSize: 50px;
+            width: var(--iconSize);
+            height: var(--iconSize);
+        }
+
+        .cargoBox {
+            stroke-width: 3;
+            stroke: rgb(50, 50, 50);
+        }
+    </style>
+    <h1>SVG Test</h1>
+    <svg class="svgIcons">
+        <use href="/img/icons.svg#ListIcon" />
+    </svg>
+    <br />
+    <svg class="cargoBox emptyBox">
+        <use href="/img/icons.svg#CargoBox" x="0" y="0" class="fullBox" />
+        <use href="/img/icons.svg#CargoBox" x="25" y="0" class="fullBox" />
+        <use href="/img/icons.svg#CargoBox" x="50" y="0" class="fullBox" />
+        <use href="/img/icons.svg#CargoBox" x="75" y="0" class="fullBox" />
+        <use href="/img/icons.svg#CargoBox" x="100" y="0" />
+        <use href="/img/icons.svg#CargoBox" x="125" y="0" />
+        <use href="/img/icons.svg#CargoBox" x="150" y="0" />
+        <use href="/img/icons.svg#CargoBox" x="175" y="0" />
+        <use href="/img/icons.svg#CargoBox" x="200" y="0" />
+        <use href="/img/icons.svg#CargoBox" x="225" y="0" />
+
+        <use href="/img/icons.svg#CargoBox" x="0" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="25" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="50" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="75" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="100" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="125" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="150" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="175" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="200" y="25" />
+        <use href="/img/icons.svg#CargoBox" x="225" y="25" />
+    </svg>
+</body>
+
+</html>

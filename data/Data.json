@@ -1,0 +1,336 @@
+{
+    "Refineries": [
+        {
+            "Location": "ARC-L1",
+            "Name": "Wide Forest Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "ARC-L2",
+            "Name": "Liveley Pathway Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "ARC-L4",
+            "Name": "Faint Glen Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "CRU-L1",
+            "Name": "Ambitious Dream Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "HUR-L1",
+            "Name": "Green Glade Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "HUR-L2",
+            "Name": "Faithful Dream Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "MIC-L1",
+            "Name": "Shallow Frontier Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "MIC-L2",
+            "Name": "Long Forest Station",
+            "System": "Stanton"
+        },
+        {
+            "Location": "MIC-L5",
+            "Name": "Modern Icarus Station",
+            "System": "Stanton"
+        }
+    ],
+    "Minerals": [
+        {
+            "Name": "Quantanium",
+            "Tier": "TierQ",
+            "Price": 23748,
+            "Bonus": {
+                "HUR-L1": 0.02,
+                "HUR-L2": 0.02,
+                "ARC-L1": 0.03,
+                "ARC-L2": 0.03,
+                "MIC-L2": 0.01
+            }
+        },
+        {
+            "Name": "Gold",
+            "Tier": "Tier1",
+            "Price": 7769,
+            "Bonus": {
+                "HUR-L1": -0.03,
+                "HUR-L2": 0.01,
+                "CRU-L1": -0.06,
+                "ARC-L2": 0.07,
+                "ARC-L4": -0.04,
+                "MIC-L1": 0.01,
+                "MIC-L2": 0.09
+            }
+        },
+        {
+            "Name": "Taranite",
+            "Tier": "Tier1",
+            "Price": 7591,
+            "Bonus": {
+                "HUR-L2": -0.03,
+                "ARC-L1": -0.06,
+                "ARC-L4": 0.05
+            }
+        },
+        {
+            "Name": "Bexalite",
+            "Tier": "Tier1",
+            "Price": 7589,
+            "Bonus": {
+                "HUR-L1": -0.02,
+                "CRU-L1": -0.06,
+                "ARC-L2": 0.02,
+                "MIC-L2": 0.09,
+                "MIC-L5": 0.12
+            }
+        },
+        {
+            "Name": "Diamond",
+            "Tier": "Tier2",
+            "Price": 4453
+        },
+        {
+            "Name": "Borase",
+            "Tier": "Tier2",
+            "Price": 3479,
+            "Bonus": {
+                "HUR-L1": 0.01,
+                "ARC-L2": 0.02,
+                "MIC-L2": -0.03,
+                "MIC-L5": 0.09
+            }
+        },
+        {
+            "Name": "Laranite",
+            "Tier": "Tier2",
+            "Price": 2993,
+            "Bonus": {
+                "HUR-L1": 0.02,
+                "HUR-L2": -0.01,
+                "CRU-L1": -0.08,
+                "ARC-L1": -0.02,
+                "MIC-L1": 0.02,
+                "MIC-L2": -0.01
+            }
+        },
+        {
+            "Name": "Hephaestanite",
+            "Tier": "Tier2",
+            "Price": 2721,
+            "Bonus": {
+                "CRU-L1": -0.02,
+                "ARC-L1": -0.04,
+                "ARC-L2": -0.08,
+                "ARC-L4": -0.05,
+                "MIC-L5": 0.08
+            }
+        },
+        {
+            "Name": "Agricium",
+            "Tier": "Tier2",
+            "Price": 2707,
+            "Bonus": {
+                "HUR-L1": -0.08,
+                "HUR-L2": -0.02,
+                "ARC-L4": -0.04,
+                "MIC-L1": 0.08
+            }
+        },
+        {
+            "Name": "Beryl",
+            "Tier": "Tier2",
+            "Price": 2673,
+            "Bonus": {
+                "HUR-L2": 0.01,
+                "CRU-L1": 0.07,
+                "ARC-L1": 0.07,
+                "ARC-L4": -0.04,
+                "MIC-L1": -0.06,
+                "MIC-L2": -0.08,
+                "MIC-L5": 0.07
+            }
+        },
+        {
+            "Name": "Titanium",
+            "Tier": "Tier3",
+            "Price": 499,
+            "Bonus": {
+                "CRU-L1": -0.01,
+                "ARC-L1": 0.05,
+                "ARC-L2": 0.03,
+                "ARC-L4": -0.02,
+                "MIC-L2": 0.06,
+                "MIC-L5": 0.13
+            }
+        },
+        {
+            "Name": "Tungsten",
+            "Tier": "Tier3",
+            "Price": 414,
+            "Bonus": {
+                "HUR-L1": 0.04,
+                "CRU-L1": 0.02,
+                "ARC-L2": -0.06,
+                "ARC-L4": -0.05,
+                "MIC-L2": 0.09
+            }
+        },
+        {
+            "Name": "Quartz",
+            "Tier": "Tier3",
+            "Price": 396,
+            "Bonus": {
+                "ARC-L1": 0.11,
+                "ARC-L4": -0.02,
+                "MIC-L1": -0.03
+            }
+        },
+        {
+            "Name": "Iron",
+            "Tier": "Tier3",
+            "Price": 393,
+            "Bonus": {
+                "HUR-L1": -0.05,
+                "CRU-L1": 0.02,
+                "ARC-L1": 0.01,
+                "MIC-L5": 0.08
+            }
+        },
+        {
+            "Name": "Copper",
+            "Tier": "Tier3",
+            "Price": 375,
+            "Bonus": {
+                "HUR-L1": -0.05,
+                "HUR-L2": -0.03,
+                "ARC-L2": 0.06,
+                "ARC-L4": -0.04,
+                "MIC-L1": 0.04,
+                "MIC-L2": 0.02
+            }
+        },
+        {
+            "Name": "Corundum",
+            "Tier": "Tier3",
+            "Price": 375,
+            "Bonus": {
+                "HUR-L1": -0.05,
+                "CRU-L1": 0.07,
+                "ARC-L1": -0.04,
+                "ARC-L2": -0.03,
+                "ARC-L4": -0.09,
+                "MIC-L1": 0.02,
+                "MIC-L2": 0.06
+            }
+        },
+        {
+            "Name": "Aluminum",
+            "Tier": "Tier3",
+            "Price": 324,
+            "Bonus": {
+                "HUR-L1": -0.04,
+                "ARC-L1": -0.05,
+                "ARC-L4": -0.03,
+                "MIC-L1": 0.07
+            }
+        },
+        {
+            "Name":"Inert",
+            "Tier":"Tier4"
+        }
+    ],
+    "ProcessMethods": [
+        {
+            "Code": "Cormack",
+            "Name": "Cormack Method",
+            "Speed": "High",
+            "Cost": "Moderate",
+            "Yield": "Low"
+        },
+        {
+            "Code": "Dinyx",
+            "Name": "Dinyx Solventation",
+            "Speed": "Very Low",
+            "Cost": "Low",
+            "Yield": "High"
+        },
+        {
+            "Code": "Electrostarolysis",
+            "Name": "Electrostarolysis",
+            "Speed": "Moderate",
+            "Cost": "Moderate",
+            "Yield": "Moderate"
+        },
+        {
+            "Code": "Ferron",
+            "Name": "Ferron Exchange",
+            "Speed": "Low",
+            "Cost": "Moderate",
+            "Yield": "High"
+        },
+        {
+            "Code": "Gaskin",
+            "Name": "Gaskin Process",
+            "Speed": "High",
+            "Cost": "High",
+            "Yield": "Moderate"
+        },
+        {
+            "Code": "Kazen",
+            "Name": "Kazen Winnowing",
+            "Speed": "Moderate",
+            "Cost": "Low",
+            "Yield": "Low"
+        },
+        {
+            "Code": "Pyrometric",
+            "Name": "Pyrometric Chromalysis",
+            "Speed": "Low",
+            "Cost": "High",
+            "Yield": "High"
+        },
+        {
+            "Code": "Thermonatic",
+            "Name": "Thermonatic Deposition",
+            "Speed": "Low",
+            "Cost": "Low",
+            "Yield": "Moderate"
+        },
+        {
+            "Code": "XCR",
+            "Name": "XCR Reaction",
+            "Speed": "High",
+            "Cost": "High",
+            "Yield": "Low"
+        }
+    ],
+    "Multipliers": {
+        "Speed": {
+            "Very Low": 29.3497,
+            "Low": 0,
+            "Moderate": 0,
+            "High": 0
+        },
+        "Cost": {
+            "Low": 1.6632,
+            "Moderate": 0,
+            "High": 0
+        },
+        "Yield": {
+            "Low": 0.6,
+            "Moderate": 0.7,
+            "High": 0.85
+        }
+    }
+}

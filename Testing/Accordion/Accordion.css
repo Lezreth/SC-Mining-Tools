@@ -1,0 +1,69 @@
+body {
+    background-color: black;
+}
+/* body {
+    font-weight: 300;
+    font-size: 100%;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    line-height: 140%;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+} */
+
+/*  Hide the checkbox  */
+.AccordionControl {
+    display: none;
+}
+/*    End of fluff        */
+
+/*****  Label attached to the checkbox and clicked on in its place  *****/
+.orderlabel {
+    display: block;
+    padding: 0.8em;
+    width: 100%;
+    height: 2.5em;
+    border-bottom: 0.1em solid hsl(200, 96%, 80%);
+    background: hsl(200, 96%, 50%);
+    color: hsl(0, 100%, 100%);
+    text-transform: uppercase;
+    font-size: 1.8em;
+    line-height: 1em;
+    cursor: pointer;
+}
+
+/*****  Label attached to the checkbox and clicked on in its place  *****/
+.orderlabel:hover {
+    background: hsl(200, 96%, 40%);
+}
+
+/*****  Element that will be hidden  *****/
+.collapsible {
+    display: block;
+    padding: 0 1em;
+    width: 100%;
+    background: hsl(0, 1%, 90%);
+}
+
+/*****  Checkbox that controls the toggling + The element that will be hidden  *****/
+.AccordionControl+.collapsible {
+    overflow: hidden;
+    height: 0;
+
+    -webkit-transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease;
+    -ms-transition: height 0.5s ease;
+    -o-transition: height 0.5s ease;
+    transition: height 0.5s ease;
+}
+
+/*****  Checkbox that controls the toggling + The element that will be hidden  *****/
+.AccordionControl:checked+.collapsible {
+    overflow: auto;
+    height: 200px;
+    /* needs a numeric value here to keep transition */
+}

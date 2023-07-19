@@ -1,0 +1,94 @@
+/**********************************************************************/
+/**************************  Refinery Icons  **************************/
+.load-in-ship {
+    background-color: var(--color-bg-button-positive);
+    color: var(--color-fg-button);
+    border-radius: 0.5rem;
+    margin: 0 5px;
+}
+
+.packageicon {
+    color: var(--color-fg-button);
+    position: relative;
+    height: 2rem;
+}
+
+.deleteicon {
+    color: var(--color-fg-button);
+    position: relative;
+    height: 1.2rem;
+    margin: 0.2rem;
+}
+
+.delete-order {
+    background-color: var(--color-bg-button-negative);
+    color: var(--color-fg-button);
+    border-radius: 0.5rem;
+    margin: 0 5px;
+}
+
+/*****  Icon on left side of refinery orders  *****/
+.refineryBox {
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+/**********************************************************************/
+.AccordionControl {
+    display: none;
+}
+
+
+.orderlabel {
+    background-color: var(--color-bg-forms);
+    color: var(--color-fg-collapsible);
+    display: flex;
+    margin: 0.05rem 0;
+    padding: 0.05rem 0;
+    cursor: pointer;
+}
+
+
+.orderlabel:has(+ input)::before {
+    content: "\27A4";
+    color: red;
+    padding: 0.75rem 0.5rem 1rem 1rem;
+}
+
+.orderlabel:has(+ input:checked)::before {
+    content: "\25BC";
+}
+
+
+/*****  Label attached to the checkbox and clicked on in its place  *****/
+.orderlabel:hover {
+    background: hsl(0, 0%, 33%)
+}
+
+/*****  Element that will be hidden  *****/
+.collapsible {
+    margin: auto;
+    text-align: center;
+}
+
+/*****  Checkbox that controls the toggling + The element that will be hidden  *****/
+.AccordionControl+.collapsible {
+    overflow: hidden;
+    font-size: 0;
+    opacity: 0;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+/*****  Checkbox that controls the toggling + The element that will be hidden  *****/
+.AccordionControl:checked+.collapsible {
+    overflow: visible;
+    font-size: 12pt;
+    opacity: 1;
+    /* needs a numeric value here to keep transition */
+}
