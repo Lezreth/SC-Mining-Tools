@@ -1,0 +1,31 @@
+# Ignore build output
+*.[o,a]
+
+# Ignore minified files
+*.min.*
+
+# Ignore temporary files
+*.tmp
+*.sass-cache
+*.css.map
+*.scss-cache
+*.js.map
+
+# Ignore node_modules
+node_modules
+
+# Ignore npm-debug.log
+npm-debug.log*
+
+# Ignore editor config files
+.editorconfig
+
+# Ignore Visual Studio Code files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Ignore other files
+*~
