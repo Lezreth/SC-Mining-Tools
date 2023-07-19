@@ -2,7 +2,7 @@
 //------------------------------------------------------------------------------------------------
 //!  Calculates additional data that relies on raw SCU.
 //
-function CalculateInitialStats() {
+const CalculateInitialStats = () => {
     const material = this.id.split("-")[0];
     const rawSCU = this.value;
 
@@ -25,7 +25,7 @@ function CalculateInitialStats() {
 //------------------------------------------------------------------------------------------------
 //!  Calculates the total amount of minerals the refinery will produce of each type.
 //
-function CalculateTotalYield(Minerals) {
+const CalculateTotalYield = (Minerals) => {
     let totalYield = 0;
     Minerals.forEach(item => { totalYield += item.MineralYield; });
     return totalYield;
@@ -36,7 +36,7 @@ function CalculateTotalYield(Minerals) {
 //------------------------------------------------------------------------------------------------
 //!  Sums up the values in the supplied column.
 //
-function CalculateRawMaterialSummary(ItemID) {
+const CalculateRawMaterialSummary = (ItemID) => {
     let total = 0;
     document.querySelectorAll("[id$=" + ItemID + "]").forEach(item => {
         total += parseInt(item.innerHTML, 10); console.log(item.innerHTML);
@@ -48,7 +48,7 @@ function CalculateRawMaterialSummary(ItemID) {
 //------------------------------------------------------------------------------------------------
 //!  Sums up the time values in the duration column.
 //
-function CalculateRawTimeSummary() {
+const CalculateRawTimeSummary = () => {
     let total = 0;
     document.querySelectorAll(`[id$="-refine-duration-timer"]`).forEach(item => {
         let seconds = ConvertTimeToSeconds(item.innerHTML);
@@ -61,7 +61,7 @@ function CalculateRawTimeSummary() {
 //------------------------------------------------------------------------------------------------
 //!  Converts the time display format to seconds.
 //
-function ConvertTimeToSeconds(timeString) {
+const ConvertTimeToSeconds = (timeString) => {
     const parts = timeString.split(',');
     let seconds = 0;
     parts.forEach(item => {
@@ -76,7 +76,7 @@ function ConvertTimeToSeconds(timeString) {
 //------------------------------------------------------------------------------------------------
 //!  Converts seconds to time display format.
 //
-function ConvertSecondsToTime(seconds) {
+const ConvertSecondsToTime = (seconds) => {
     let hours = Math.floor(seconds / 3600);
     let minutes = Math.floor((seconds % 3600) / 60);
     seconds = seconds % 60;

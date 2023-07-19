@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //------------------------------------------------------------------------------------------------
 //!  Populate the refinery lists.
 //
-function PopulateRefineryLists(obj) {
+const PopulateRefineryLists = (obj) => {
     ProcessMethods = obj.ProcessMethods;
     Minerals = obj.Minerals;
     Multipliers = obj.Multipliers;
@@ -100,7 +100,7 @@ function PopulateRefineryLists(obj) {
     //  Summary row
     const row = addRow(mineralList);
     addCell(row, "Invoice Summary", true).id = "RawMaterialSummary";
-    const summaryRow =document.getElementById("RawMaterialSummary");
+    const summaryRow = document.getElementById("RawMaterialSummary");
     summaryRow.colSpan = 4;
     row.classList.add("Tier1");
 
@@ -151,7 +151,7 @@ function PopulateRefineryLists(obj) {
 //------------------------------------------------------------------------------------------------
 //!  Populate the ship list.
 //
-function PopulateShipList() {
+const PopulateShipList = () => {
     const cargoShipList = document.getElementById("cargo_ships");  //  Cargo Ship DropDownList
     cargoShipList.replaceChildren();
 
@@ -174,7 +174,7 @@ function PopulateShipList() {
 //------------------------------------------------------------------------------------------------
 //!  Get the list of ships the user owns.
 //
-function GetCustomShipList() {
+const GetCustomShipList = () => {
     const customShips = localStorage.getItem("customShipsList");
     if (customShips !== null) {
         CustomShipList = JSON.parse(customShips);
@@ -187,7 +187,7 @@ function GetCustomShipList() {
 //------------------------------------------------------------------------------------------------
 //!  Fallback GUID Generator.
 //
-function uuidv4() {
+const uuidv4 = () => {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );

@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------------------------
 //!  Test Button: Toggle the Mineral Load section.
 //
-function hideMineralLoad() {
+const hideMineralLoad = () => {
     const minerals = document.getElementById("MineralLoad");
     minerals.classList.toggle("Hide");
 }
@@ -11,7 +11,7 @@ function hideMineralLoad() {
 //------------------------------------------------------------------------------------------------
 //!  Clears all of the raw mineral input fields.
 //
-function ClearInputs() {
+const ClearInputs = () => {
     const elements = document.getElementsByClassName("rawSCUInput");
     for (let i = 0; i < elements.length; i++) {
         elements[i].value = "";
@@ -32,7 +32,7 @@ function ClearInputs() {
 
 
 
-function SubmitNewWorkOrder() {
+const SubmitNewWorkOrder = () => {
     if (!ValidateRawMinerals()) { return; }
 
     //  Create a new refinery order.
@@ -67,7 +67,7 @@ var orderNumber = 0;
 //  ****************************************************************************************************
 //! ***************************  Add a new section to the Work Order table.  ***************************
 //  ****************************************************************************************************
-function AddWorkOrder(orderInfo = null) {
+const AddWorkOrder = (orderInfo = null) => {
     //  Test to see if the browser supports the HTML template element by checking for the presence of the template element's content attribute.
     if (!("content" in document.createElement("template"))) {
         //  Find another way to add the rows to the table because the HTML template element is not supported.
@@ -132,7 +132,7 @@ function AddWorkOrder(orderInfo = null) {
 
     // TotalValue  => Calculate this
     let TotalValue = 0;
-    orderInfo.Minerals.forEach(item =>{
+    orderInfo.Minerals.forEach(item => {
 
     });
 
@@ -196,13 +196,13 @@ function AddWorkOrder(orderInfo = null) {
 
 //!  Insert a new row into the specified table.
 //!  Return: Reference to the row that was inserted.
-function addRow(table) {
+const addRow = (table) => {
     return table.insertRow();
 }
 
 //!  Insert a new cell into the specified row.
 //!  Return: Reference to the cell that was inserted.
-function addCell(row, text = null, bold = false) {
+const addCell = (row, text = null, bold = false) => {
     let cell = null;
     if (bold) {
         cell = document.createElement("th");
@@ -222,7 +222,7 @@ function addCell(row, text = null, bold = false) {
 //------------------------------------------------------------------------------------------------
 //!  Add cargo box slots to the designated ship.
 //
-function AddBoxes(targetSVG, quantity) {
+const AddBoxes = (targetSVG, quantity) => {
     let rows = Math.floor(quantity / 10);
     let finalRowCount = quantity % 10;
 
@@ -244,7 +244,7 @@ function AddBoxes(targetSVG, quantity) {
 //------------------------------------------------------------------------------------------------
 //!  Create a cargo box at the specified coordinates for appending to a cargo grid.
 //
-function createCargoBox(x, y) {
+const createCargoBox = (x, y) => {
     const box = document.createElementNS("http://www.w3.org/2000/svg", "use");
     box.setAttribute("href", "/img/icons.svg#CargoBox");
     box.setAttribute("x", x * 25);
@@ -256,7 +256,7 @@ function createCargoBox(x, y) {
 //------------------------------------------------------------------------------------------------
 //!  Fill the specified number of cargo boxes.
 //
-function FillBoxes(targetSVG, quantity) {
+const FillBoxes = (targetSVG, quantity) => {
     const boxList = document.getElementById(targetSVG);
     const boxes = boxList.children;
 
@@ -287,14 +287,14 @@ function FillBoxes(targetSVG, quantity) {
 //------------------------------------------------------------------------------------------------
 //!  Add the work order to the selected transport ship.
 //
-function AddOrderToShip(element) {
+const AddOrderToShip = (element) => {
     return;
 }
 
 //------------------------------------------------------------------------------------------------
 //!  Delete the selected work order.
 //
-function DeleteOrder(event) {
+const DeleteOrder = (event) => {
     const orderNumber = this.id.split("_")[0];
     const orderHead = document.getElementById(orderNumber + "_Head");
     const orderBody = document.getElementById(orderNumber + "_Body");
@@ -400,7 +400,7 @@ const insertAboveTask = (zone, mouseY) => {
 //------------------------------------------------------------------------------------------------
 //!  Add/Remove class from element
 //
-function hasClass(el, className) {
+const hasClass = (el, className) => {
     if (el.classList) { return el.classList.contains(className); }
     return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
 }
@@ -408,12 +408,12 @@ function hasClass(el, className) {
 /// <summary>
 /// Add a class to the element.
 /// </summary>
-function addClass(el, className) {
+const addClass = (el, className) => {
     if (el.classList) { el.classList.add(className) }
     else if (!hasClass(el, className)) { el.className += " " + className; }
 }
 
-function removeClass(el, className) {
+const removeClass = (el, className) => {
     if (el.classList) { el.classList.remove(className) }
     else if (hasClass(el, className)) {
         let reg = new RegExp('(\\s|^)' + className + '(\\s|$)');

@@ -2,7 +2,7 @@
 //!  Validates the raw mineral input fields, allowing only positive numbers,
 //!  and calls for calculations to be processed.
 //
-function ValidateInput(e) {
+const ValidateInput = (e) => {
     //  Positive numeric only enforcement.
     if ((e.key == '-' || e.key == '+' || e.key == '.' || e.key == 'e' || e.key == 'E')) {
         e.preventDefault();
@@ -20,7 +20,7 @@ function ValidateInput(e) {
 }
 
 
-function ValidateRawMinerals() {
+const ValidateRawMinerals = () => {
     const mineralList = new Array();
     Array.from(document.querySelectorAll(`[id$="-refined"]`))
         .filter(item => (item.checked === true))

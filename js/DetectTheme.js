@@ -1,7 +1,7 @@
 ///
 ///  Determines if the user has a set theme.
 ///
-function detectColorScheme() {
+const detectColorScheme = () => {
     var theme = "dark";    //  Default to dark.
 
     //  Local storage is used to override OS theme settings.

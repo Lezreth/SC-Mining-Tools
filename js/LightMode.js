@@ -4,7 +4,7 @@
 const toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
 
 //  Function that changes the theme, and sets a localStorage variable to track the theme between page loads.
-function switchTheme(e) {
+const switchTheme = (e) => {
     if (e.target.checked) {
         localStorage.setItem('theme', 'light');
         document.documentElement.setAttribute('data-theme', 'light');
