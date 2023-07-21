@@ -1,53 +1,46 @@
-
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Calculates additional data that relies on raw SCU.
-//
-const CalculateInitialStats = () => {
+function CalculateInitialStats() {
     const material = this.id.split("-")[0];
     const rawSCU = this.value;
 
-    document.getElementById(material + "-scu-yield").innerHTML = Math.round(rawSCU * 0.95);
+
+    //  TODO  Replace hard coded numbers
+    RefineryMinerals[material].RefineCost = Math.round(rawSCU * 0.25);
+    RefineryMinerals[material].SCUPrice = Math.round(rawSCU * 27);
+    RefineryMinerals[material].MineralYield = Math.round(rawSCU * 0.95);
+    RefineryMinerals[material].Duration = Math.round(rawSCU * 50);
+    RefineryMinerals[material].Profit = Math.round(RefineryMinerals[material].SCUPrice * RefineryMinerals[material].MineralYield);
 
 
-    // let totalRefineCost = CalculateRawMaterialSummary("-refine-cost");
-    // let totalSCUPrice = CalculateRawMaterialSummary("-scu-price");
-    let totalSCUYield = CalculateRawMaterialSummary("-scu-yield");
-    // let totalDuration = CalculateRawTimeSummary();
-    // let totalProfit = CalculateRawMaterialSummary("-profit");
+    document.getElementById(material + "-refine-cost").innerHTML = RefineryMinerals[material].RefineCost;
+    document.getElementById(material + "-scu-price").innerHTML = RefineryMinerals[material].SCUPrice;
+    document.getElementById(material + "-scu-yield").innerHTML = RefineryMinerals[material].MineralYield;
+    document.getElementById(material + "-refine-duration-timer").innerHTML = RefineryMinerals[material].Duration;
+    document.getElementById(material + "-profit").innerHTML = RefineryMinerals[material].Profit;
 
-    // document.getElementById("Summary-refine-cost").innerHTML = totalRefineCost;
-    // document.getElementById("Summary-scu-price").innerHTML = totalSCUPrice;
-    document.getElementById("Summary-scu-yield").innerHTML = totalSCUYield;
-    // document.getElementById("Summary-refine-duration-timer").innerHTML = totalDuration;
-    // document.getElementById("Summary-profit").innerHTML = totalProfit;
+
+    RefineryInvoice = new RefinerySummary();
+    for (let key of Object.keys(RefineryMinerals)) {
+        RefineryInvoice.TotalRefineCost += RefineryMinerals[key].RefineCost;
+        RefineryInvoice.TotalPricePerSCU += RefineryMinerals[key].SCUPrice;
+        RefineryInvoice.TotalMineralYield += RefineryMinerals[key].MineralYield;
+        RefineryInvoice.TotalDuration += RefineryMinerals[key].Duration;
+        RefineryInvoice.TotalProfit += RefineryMinerals[key].Profit;
+    }
+
+
+    document.getElementById("Summary-refine-cost").innerHTML = RefineryInvoice.TotalRefineCost;
+    document.getElementById("Summary-scu-price").innerHTML = RefineryInvoice.TotalPricePerSCU;
+    document.getElementById("Summary-scu-yield").innerHTML = RefineryInvoice.TotalMineralYield;
+    document.getElementById("Summary-refine-duration-timer").innerHTML = RefineryInvoice.TotalDuration;
+    document.getElementById("Summary-profit").innerHTML = RefineryInvoice.TotalProfit;
 }
 
-//------------------------------------------------------------------------------------------------
-//!  Calculates the total amount of minerals the refinery will produce of each type.
-//
-const CalculateTotalYield = (Minerals) => {
-    let totalYield = 0;
-    Minerals.forEach(item => { totalYield += item.MineralYield; });
-    return totalYield;
-}
 
 
-
-//------------------------------------------------------------------------------------------------
-//!  Sums up the values in the supplied column.
-//
-const CalculateRawMaterialSummary = (ItemID) => {
-    let total = 0;
-    document.querySelectorAll("[id$=" + ItemID + "]").forEach(item => {
-        total += parseInt(item.innerHTML, 10); console.log(item.innerHTML);
-    });
-
-    return total;
-}
-
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Sums up the time values in the duration column.
-//
 const CalculateRawTimeSummary = () => {
     let total = 0;
     document.querySelectorAll(`[id$="-refine-duration-timer"]`).forEach(item => {
@@ -58,9 +51,8 @@ const CalculateRawTimeSummary = () => {
     return ConvertSecondsToTime(total);
 }
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Converts the time display format to seconds.
-//
 const ConvertTimeToSeconds = (timeString) => {
     const parts = timeString.split(',');
     let seconds = 0;
@@ -73,9 +65,8 @@ const ConvertTimeToSeconds = (timeString) => {
     return seconds;
 }
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Converts seconds to time display format.
-//
 const ConvertSecondsToTime = (seconds) => {
     let hours = Math.floor(seconds / 3600);
     let minutes = Math.floor((seconds % 3600) / 60);

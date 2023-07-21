@@ -1,4 +1,4 @@
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Test Button: Toggle the Mineral Load section.
 //
 const hideMineralLoad = () => {
@@ -8,7 +8,7 @@ const hideMineralLoad = () => {
 
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Clears all of the raw mineral input fields.
 //
 const ClearInputs = () => {
@@ -28,8 +28,12 @@ const ClearInputs = () => {
     document.querySelectorAll(`[id$="-scu-yield"]`).forEach(item => { item.innerHTML = 0; });
     document.querySelectorAll(`[id$="-refine-duration-timer"]`).forEach(item => { item.innerHTML = 0; });
     document.querySelectorAll(`[id$="-profit"]`).forEach(item => { item.innerHTML = 0; });
-}
 
+    for (const key in Minerals) {
+        RefineryMinerals[key] = new Mineral(key);
+    }
+    RefineryInvoice = new RefinerySummary();
+}
 
 
 const SubmitNewWorkOrder = () => {
@@ -37,36 +41,45 @@ const SubmitNewWorkOrder = () => {
 
     //  Create a new refinery order.
     let refineryOrder = new RefineryOrder();
-    orderHead.setAttribute("data-guid", refineryOrder.GUID);
-    refineryOrder.Minerals = mineralList;
-    RefineryOrders.push(refineryOrder);  //  Add order to master list.
 
-    let orderInfo;  //  Passed to AddWorkOrder(), provides info for making a new work order.
+
+    refineryOrder.Minerals = RefineryMinerals.filter(item => item.MineralYield > 0);
+    for (const key in RefineryMinerals) {
+        if (RefineryMinerals[key].MineralYield == 0) { continue; }
+        refineryOrder.Minerals[key] = RefineryMinerals[key];
+    }
+
 
     //  Prepare the header.
     const selectedRefinery = document.getElementById("Refineries");
     const refinery = selectedRefinery.options[selectedRefinery.selectedIndex].text;
-    refineryOrder.Location = refinery;
+    refineryOrder.Refinery = refinery;
 
     const selectedMethod = document.getElementById("processing_method");
     const processingMethod = selectedMethod.options[selectedMethod.selectedIndex].text;
     refineryOrder.Method = processingMethod;
 
-    orderInfo.Refinery = refinery;
-    orderInfo.ProcessingMethod = processingMethod;
-    orderInfo.TotalYield = CalculateTotalYield(refineryOrder.Minerals);
+    refineryOrder.TotalMineralYield = RefineryInvoice.TotalMineralYield;
+    refineryOrder.TotalDuration = RefineryInvoice.TotalDuration;
+    refineryOrder.TotalProfit = RefineryInvoice.TotalProfit;
+
+    //  Add order to master list of orders currently in the refinery.
+    //  TODO  Save to localstorage.
+    RefineryOrders.push(refineryOrder);
+
+    ClearInputs();
+    AddWorkOrder(refineryOrder);
 }
 
 
 
-
-
-
-var orderNumber = 0;
-
 //  ****************************************************************************************************
 //! ***************************  Add a new section to the Work Order table.  ***************************
 //  ****************************************************************************************************
+
+//  Used for creating unique html tag IDs for each refinery order.
+var orderNumber = 0;
+
 const AddWorkOrder = (orderInfo = null) => {
     //  Test to see if the browser supports the HTML template element by checking for the presence of the template element's content attribute.
     if (!("content" in document.createElement("template"))) {
@@ -74,11 +87,8 @@ const AddWorkOrder = (orderInfo = null) => {
         return false;  //  Since templates are not supported, returning false for now.
     }
 
-    //  *************************************************************************************************
-    //  ***********  Start with getting minerals selected for refining and validating them.  ************
 
-
-    //  *************************************************************************************************
+    //  =================================================================================================
     //  **************************  Prepare the table for receiving an order  ***************************
     //  WorkOrders: Table containing all work orders in refinery.
     const container = document.getElementById("WorkOrders");
@@ -104,47 +114,20 @@ const AddWorkOrder = (orderInfo = null) => {
     orderLabel.htmlFor = orderToggle.id;
     bodyTable.id = order + "_Body";
     orderHead.id = order + "_Head";
+    orderHead.setAttribute("data-guid", orderInfo.GUID);
 
-    //  ****  This is where the magic happens: Fill in the order information here  ****
-    // const headLabel = document.getElementById("order" + orderNumber + "_Label");  //  Summary
-    // const summaryTable = document.getElementById(order + "_Head");  //  Summary
-    //  *************************************************************************************************
+    //  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //  *************  This is where the magic happens: Fill in the order information here  *************
+
+    //  =================================================================================================
     //  ****************************************  Order Summary  ****************************************
-    // headLabel.innerHTML = "ID: " + orderNumber + " | 800 cSCU | Created: 07JUL | 7h | Avg Worth: 4000 aUEC";
-
-
-    // document.querySelectorAll(`[id$="-refine-cost"]`).forEach(item => { item.innerHTML = 0; });
-
-
-
-    // **  Required Parameters  **
-    // orderInfo.Refinery           **Done**
-    // orderInfo.ProcessingMethod   **Done**
-    // orderInfo.TotalYield         **Done**
-    // orderInfo.ProcessingTime
-    // orderInfo.Minerals
-
-
-
-
-
-
-
-    // TotalValue  => Calculate this
-    let TotalValue = 0;
-    orderInfo.Minerals.forEach(item => {
-
-    });
-
-
-
     let location = addRow(orderHead);
     addCell(location, "Location", true);
     addCell(location, orderInfo.Refinery).colSpan = 3;
 
     let method = addRow(orderHead);
     addCell(method, "Method", true);
-    addCell(method, orderInfo.ProcessingMethod).colSpan = 3;
+    addCell(method, orderInfo.Method).colSpan = 3;
 
     //  Header row
     let summaryHead = addRow(orderHead);
@@ -157,26 +140,25 @@ const AddWorkOrder = (orderInfo = null) => {
     const month = date.toLocaleString('default', { month: 'short' });
 
     let summaryContent = addRow(orderHead);
-    addCell(summaryContent, totalYield + " cSCU");          //  Total Yield
-    addCell(summaryContent, date.getDate() + " " + month);  //  Created
-    addCell(summaryContent, orderInfo.ProcessingTime);     //  TODO  Processing Time
-    addCell(summaryContent, TotalValue);  //  TODO  Total Average Worth
-    //  *************************************************************************************************
+    addCell(summaryContent, orderInfo.TotalMineralYield + " cSCU"); //  Total yield of minerals
+    addCell(summaryContent, date.getDate() + " " + month);          //  Date work order is created
+    addCell(summaryContent, orderInfo.TotalDuration);               //  Total work order processing time
+    addCell(summaryContent, orderInfo.TotalProfit);                 //  Average amount this work order will sell for
 
 
-    //  *************************************************************************************************
+    //  =================================================================================================
     //  ****************************************  Order Details  ****************************************
     //  TODO  Replace with actual mineral values.
-    orderInfo.Minerals.forEach(item => {
+    for (const key in orderInfo.Minerals) {
         let row = addRow(bodyTable);
-        addCell(row, item.Name);            //  Mineral Name
-        addCell(row, "12,000 aUEC");        //  TODO  Refinement Cost
-        addCell(row, item.MineralYield);    //  Yield
-        addCell(row, "16,000 aUEC");        //  TODO  Average Worth
-    })
-    //  *************************************************************************************************
+        addCell(row, key);                                  //  Mineral Name
+        addCell(row, orderInfo.Minerals[key].RefineCost);   //  Refinement Cost
+        addCell(row, orderInfo.Minerals[key].MineralYield); //  Yield
+        addCell(row, orderInfo.Minerals[key].Profit);       //  Average Worth
+    }
 
-    //  *********************
+
+    //  =====================
     //  Drag and drop support
     orderMainClone.addEventListener("dragstart", () => {
         orderMainClone.classList.add("is-dragging");
@@ -185,21 +167,21 @@ const AddWorkOrder = (orderInfo = null) => {
     orderMainClone.addEventListener("dragend", () => {
         orderMainClone.classList.remove("is-dragging");
     });
-    //  *********************
+    //  =====================
 
-    orderNumber++;  //  Required for differentiating the IDs of the order's elements.
-
-    ClearInputs();
+    //  Used for creating unique html tag IDs for each refinery order.
+    orderNumber++;
 }
-//  ****************************************************************************************************
-//  ****************************************************************************************************
 
+
+//   **********************************************************************************************
 //!  Insert a new row into the specified table.
 //!  Return: Reference to the row that was inserted.
 const addRow = (table) => {
     return table.insertRow();
 }
 
+//   **********************************************************************************************
 //!  Insert a new cell into the specified row.
 //!  Return: Reference to the cell that was inserted.
 const addCell = (row, text = null, bold = false) => {
@@ -219,7 +201,7 @@ const addCell = (row, text = null, bold = false) => {
 }
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Add cargo box slots to the designated ship.
 //
 const AddBoxes = (targetSVG, quantity) => {
@@ -241,7 +223,7 @@ const AddBoxes = (targetSVG, quantity) => {
     }
 }
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Create a cargo box at the specified coordinates for appending to a cargo grid.
 //
 const createCargoBox = (x, y) => {
@@ -253,7 +235,7 @@ const createCargoBox = (x, y) => {
 }
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Fill the specified number of cargo boxes.
 //
 const FillBoxes = (targetSVG, quantity) => {
@@ -284,14 +266,14 @@ const FillBoxes = (targetSVG, quantity) => {
 
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Add the work order to the selected transport ship.
 //
 const AddOrderToShip = (element) => {
     return;
 }
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Delete the selected work order.
 //
 const DeleteOrder = (event) => {
@@ -306,7 +288,7 @@ const DeleteOrder = (event) => {
     orderBody.remove();
 }
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Drag and drop support.
 //
 const draggables = document.querySelectorAll(".task");
@@ -394,10 +376,9 @@ const insertAboveTask = (zone, mouseY) => {
 
 //     input.value = "";
 // });
-//  -------------------------------------------------------------------------------------------------
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Add/Remove class from element
 //
 const hasClass = (el, className) => {
@@ -420,11 +401,19 @@ const removeClass = (el, className) => {
         el.className = el.className.replace(reg, ' ');
     }
 }
-//  -------------------------------------------------------------------------------------------------
 
 
-//------------------------------------------------------------------------------------------------
+//   **********************************************************************************************
 //!  Customize Ship List
 //
 
-//  -------------------------------------------------------------------------------------------------
+
+
+
+
+//   **********************************************************************************************
+//!  Calls calculations to be performed when the refinery or refinement process method are changed.
+//
+const RawMaterialCoreChange = () => {
+    console.log("New Refinery Location: " + document.getElementById("Refineries").value);
+}

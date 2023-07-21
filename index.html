@@ -58,14 +58,14 @@
                 <fieldset>
                     <legend>Location</legend>
                     <span class="custom-dropdown">
-                        <select id="Refineries">
+                        <select id="Refineries" onchange="RawMaterialCoreChange()">
                         </select>
                     </span>
                 </fieldset>
                 <fieldset>
                     <legend>Processing Method</legend>
                     <span class="custom-dropdown">
-                        <select class="custom-dropdown" id="processing_method">
+                        <select class="custom-dropdown" id="processing_method" onchange="RawMaterialCoreChange()">
                         </select>
                     </span>
                 </fieldset>
@@ -88,7 +88,7 @@
             </div>
             <div class="stacked">
                 <fieldset class="stacked flat">
-                    <button class="ButtonBase ButtonPositive" id="submit-order" onclick="AddNewWorkOrder()">
+                    <button class="ButtonBase ButtonPositive" id="submit-order" onclick="SubmitNewWorkOrder()">
                         <svg>
                             <use href="/img/icons.svg#Confirm" />
                         </svg>

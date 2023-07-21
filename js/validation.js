@@ -1,8 +1,6 @@
-//------------------------------------------------------------------------------------------------
-//!  Validates the raw mineral input fields, allowing only positive numbers,
-//!  and calls for calculations to be processed.
-//
-const ValidateInput = (e) => {
+//   **********************************************************************************************
+//!  Validates key presses on the Units numberboxes, ensuring only [0..9] can be entered, i.e. positive integers only.
+function ValidateInput(e) {
     //  Positive numeric only enforcement.
     if ((e.key == '-' || e.key == '+' || e.key == '.' || e.key == 'e' || e.key == 'E')) {
         e.preventDefault();
@@ -20,6 +18,9 @@ const ValidateInput = (e) => {
 }
 
 
+//   **********************************************************************************************
+//!  Validates the raw mineral input fields, allowing only positive numbers,
+//!  and calls for calculations to be processed.
 const ValidateRawMinerals = () => {
     const mineralList = new Array();
     Array.from(document.querySelectorAll(`[id$="-refined"]`))

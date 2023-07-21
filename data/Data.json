@@ -1,54 +1,44 @@
 {
-    "Refineries": [
-        {
-            "Location": "ARC-L1",
+    "Refineries": {
+        "ARC-L1": {
             "Name": "Wide Forest Station",
             "System": "Stanton"
         },
-        {
-            "Location": "ARC-L2",
+        "ARC-L2": {
             "Name": "Liveley Pathway Station",
             "System": "Stanton"
         },
-        {
-            "Location": "ARC-L4",
+        "ARC-L4": {
             "Name": "Faint Glen Station",
             "System": "Stanton"
         },
-        {
-            "Location": "CRU-L1",
+        "CRU-L1": {
             "Name": "Ambitious Dream Station",
             "System": "Stanton"
         },
-        {
-            "Location": "HUR-L1",
+        "HUR-L1": {
             "Name": "Green Glade Station",
             "System": "Stanton"
         },
-        {
-            "Location": "HUR-L2",
+        "HUR-L2": {
             "Name": "Faithful Dream Station",
             "System": "Stanton"
         },
-        {
-            "Location": "MIC-L1",
+        "MIC-L1": {
             "Name": "Shallow Frontier Station",
             "System": "Stanton"
         },
-        {
-            "Location": "MIC-L2",
+        "MIC-L2": {
             "Name": "Long Forest Station",
             "System": "Stanton"
         },
-        {
-            "Location": "MIC-L5",
+        "MIC-L5": {
             "Name": "Modern Icarus Station",
             "System": "Stanton"
         }
-    ],
-    "Minerals": [
-        {
-            "Name": "Quantanium",
+    },
+    "Minerals": {
+        "Quantanium": {
             "Tier": "TierQ",
             "Price": 23748,
             "Bonus": {
@@ -59,8 +49,7 @@
                 "MIC-L2": 0.01
             }
         },
-        {
-            "Name": "Gold",
+        "Gold": {
             "Tier": "Tier1",
             "Price": 7769,
             "Bonus": {
@@ -73,8 +62,7 @@
                 "MIC-L2": 0.09
             }
         },
-        {
-            "Name": "Taranite",
+        "Taranite": {
             "Tier": "Tier1",
             "Price": 7591,
             "Bonus": {
@@ -83,8 +71,7 @@
                 "ARC-L4": 0.05
             }
         },
-        {
-            "Name": "Bexalite",
+        "Bexalite": {
             "Tier": "Tier1",
             "Price": 7589,
             "Bonus": {
@@ -95,13 +82,11 @@
                 "MIC-L5": 0.12
             }
         },
-        {
-            "Name": "Diamond",
+        "Diamond": {
             "Tier": "Tier2",
             "Price": 4453
         },
-        {
-            "Name": "Borase",
+        "Borase": {
             "Tier": "Tier2",
             "Price": 3479,
             "Bonus": {
@@ -111,8 +96,7 @@
                 "MIC-L5": 0.09
             }
         },
-        {
-            "Name": "Laranite",
+        "Laranite": {
             "Tier": "Tier2",
             "Price": 2993,
             "Bonus": {
@@ -124,8 +108,7 @@
                 "MIC-L2": -0.01
             }
         },
-        {
-            "Name": "Hephaestanite",
+        "Hephaestanite": {
             "Tier": "Tier2",
             "Price": 2721,
             "Bonus": {
@@ -136,8 +119,7 @@
                 "MIC-L5": 0.08
             }
         },
-        {
-            "Name": "Agricium",
+        "Agricium": {
             "Tier": "Tier2",
             "Price": 2707,
             "Bonus": {
@@ -147,8 +129,7 @@
                 "MIC-L1": 0.08
             }
         },
-        {
-            "Name": "Beryl",
+        "Beryl": {
             "Tier": "Tier2",
             "Price": 2673,
             "Bonus": {
@@ -161,8 +142,7 @@
                 "MIC-L5": 0.07
             }
         },
-        {
-            "Name": "Titanium",
+        "Titanium": {
             "Tier": "Tier3",
             "Price": 499,
             "Bonus": {
@@ -174,8 +154,7 @@
                 "MIC-L5": 0.13
             }
         },
-        {
-            "Name": "Tungsten",
+        "Tungsten": {
             "Tier": "Tier3",
             "Price": 414,
             "Bonus": {
@@ -186,8 +165,7 @@
                 "MIC-L2": 0.09
             }
         },
-        {
-            "Name": "Quartz",
+        "Quartz": {
             "Tier": "Tier3",
             "Price": 396,
             "Bonus": {
@@ -196,8 +174,7 @@
                 "MIC-L1": -0.03
             }
         },
-        {
-            "Name": "Iron",
+        "Iron": {
             "Tier": "Tier3",
             "Price": 393,
             "Bonus": {
@@ -207,8 +184,7 @@
                 "MIC-L5": 0.08
             }
         },
-        {
-            "Name": "Copper",
+        "Copper": {
             "Tier": "Tier3",
             "Price": 375,
             "Bonus": {
@@ -220,8 +196,7 @@
                 "MIC-L2": 0.02
             }
         },
-        {
-            "Name": "Corundum",
+        "Corundum": {
             "Tier": "Tier3",
             "Price": 375,
             "Bonus": {
@@ -234,8 +209,7 @@
                 "MIC-L2": 0.06
             }
         },
-        {
-            "Name": "Aluminum",
+        "Aluminum": {
             "Tier": "Tier3",
             "Price": 324,
             "Bonus": {
@@ -245,76 +219,66 @@
                 "MIC-L1": 0.07
             }
         },
-        {
-            "Name":"Inert",
-            "Tier":"Tier4"
+        "Inert": {
+            "Tier": "Tier4"
         }
-    ],
-    "ProcessMethods": [
-        {
-            "Code": "Cormack",
+    },
+    "ProcessMethods": {
+        "Cormack": {
             "Name": "Cormack Method",
             "Speed": "High",
             "Cost": "Moderate",
             "Yield": "Low"
         },
-        {
-            "Code": "Dinyx",
+        "Dinyx": {
             "Name": "Dinyx Solventation",
             "Speed": "Very Low",
             "Cost": "Low",
             "Yield": "High"
         },
-        {
-            "Code": "Electrostarolysis",
+        "Electrostarolysis": {
             "Name": "Electrostarolysis",
             "Speed": "Moderate",
             "Cost": "Moderate",
             "Yield": "Moderate"
         },
-        {
-            "Code": "Ferron",
+        "Ferron": {
             "Name": "Ferron Exchange",
             "Speed": "Low",
             "Cost": "Moderate",
             "Yield": "High"
         },
-        {
-            "Code": "Gaskin",
+        "Gaskin": {
             "Name": "Gaskin Process",
             "Speed": "High",
             "Cost": "High",
             "Yield": "Moderate"
         },
-        {
-            "Code": "Kazen",
+        "Kazen": {
             "Name": "Kazen Winnowing",
             "Speed": "Moderate",
             "Cost": "Low",
             "Yield": "Low"
         },
-        {
-            "Code": "Pyrometric",
+        "Pyrometric": {
             "Name": "Pyrometric Chromalysis",
             "Speed": "Low",
             "Cost": "High",
             "Yield": "High"
         },
-        {
-            "Code": "Thermonatic",
+        "Thermonatic": {
             "Name": "Thermonatic Deposition",
             "Speed": "Low",
             "Cost": "Low",
             "Yield": "Moderate"
         },
-        {
-            "Code": "XCR",
+        "XCR": {
             "Name": "XCR Reaction",
             "Speed": "High",
             "Cost": "High",
             "Yield": "Low"
         }
-    ],
+    },
     "Multipliers": {
         "Speed": {
             "Very Low": 29.3497,
