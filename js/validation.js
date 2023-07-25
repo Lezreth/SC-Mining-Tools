@@ -28,7 +28,7 @@ const ValidateRawMinerals = () => {
         .forEach(item => {
             let mID = item.id.split("-")[0];
             let mYield = Number(document.getElementById(mID + "-scu-yield").innerHTML);
-            mineralList.push(new Mineral(mID, mYield));
+            mineralList.push(new Mineral(mID));
         });
 
     //  Validate the minerals, ensure there is something to refine.

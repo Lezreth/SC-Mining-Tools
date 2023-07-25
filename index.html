@@ -5,7 +5,7 @@
     <title>Star Citizen Mining Toolset</title>
     <link rel="stylesheet" type="text/css" href="/css/buttons.css" />
     <link rel="stylesheet" type="text/css" href="/css/collapsible.css" />
-    <link rel="stylesheet" type="text/css" href="/css/dragdropfacets.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/dragdropfacets.css" /> -->
     <link rel="stylesheet" type="text/css" href="/css/global.css" />
     <link rel="stylesheet" type="text/css" href="/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/lightmode.css" />
@@ -68,6 +68,20 @@
                         <select class="custom-dropdown" id="processing_method" onchange="RawMaterialCoreChange()">
                         </select>
                     </span>
+                    <table class="floatRight">
+                        <tr>
+                            <th>Speed</th>
+                            <td id="processSpeed">Speed</td>
+                        </tr>
+                        <tr>
+                            <th>Cost</th>
+                            <td id="processCost">Cost</td>
+                        </tr>
+                        <tr>
+                            <th>Yield</th>
+                            <td id="processYield">Yield</td>
+                        </tr>
+                    </table>
                 </fieldset>
             </div>
             <div class="stacked">
@@ -187,16 +201,16 @@
         <div id="ShipListCustomizer" class="flexChild flexGrower">
             <fieldset class="flexParent flexChild">
                 <legend>Move ships you own to the right</legend>
-                <fieldset class="flat left flexGrower">
+                <fieldset class="flat floatLeft flexGrower">
                     <legend>Available Ships</legend>
                     <div id="AvailableShips" class="dragContainer" data-text="Available cargo ships."></div>
                 </fieldset>
-                <fieldset class="flat right flexGrower">
+                <fieldset class="flat floatRight flexGrower">
                     <legend>Owned Ships</legend>
                     <div id="OwnedShips" class="dragContainer" data-text="Drop ships you own here."></div>
                 </fieldset>
                 <br />
-                <div class="stacked right">
+                <div class="stacked floatRight">
                     <button class="ButtonBase ButtonPositive">
                         <svg>
                             <use href="/img/icons.svg#Confirm" />
@@ -215,7 +229,7 @@
     </div>
     <!--  Work Order Template: Contents to dynamically add to the refinery order list  -->
     <template id="WorkOrderTemplate">
-        <div id="order_Main" draggable="true" class="task">
+        <div id="order_Main" draggable="true" class="dragBox">
             <span>
                 <svg class="fullCargoBox refineryBox">
                     <use href="/img/icons.svg#Boxes" />

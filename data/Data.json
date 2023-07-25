@@ -84,7 +84,8 @@
         },
         "Diamond": {
             "Tier": "Tier2",
-            "Price": 4453
+            "Price": 4453,
+            "Bonus": {}
         },
         "Borase": {
             "Tier": "Tier2",
@@ -220,7 +221,9 @@
             }
         },
         "Inert": {
-            "Tier": "Tier4"
+            "Tier": "Tier4",
+            "Price": 0,
+            "Bonus": {}
         }
     },
     "ProcessMethods": {
@@ -282,14 +285,14 @@
     "Multipliers": {
         "Speed": {
             "Very Low": 29.3497,
-            "Low": 0,
-            "Moderate": 0,
-            "High": 0
+            "Low": 1,
+            "Moderate": 1,
+            "High": 1
         },
         "Cost": {
             "Low": 1.6632,
-            "Moderate": 0,
-            "High": 0
+            "Moderate": 1,
+            "High": 1
         },
         "Yield": {
             "Low": 0.6,

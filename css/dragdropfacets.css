@@ -2,11 +2,11 @@
     width: 330px;
 }
 
-.right {
+.floatRight {
     float: right;
 }
 
-.left {
+.floatLeft {
     float: left;
 }
 

@@ -6,6 +6,7 @@ var Ships = new Array();;              //  Data.json - Cargo ships.
 
 var RefineryOrders = new Array();   //  Orders in the refinery.
 var RefineryMinerals = new Array(); //  Current state of all of the stats of the raw minerals before a work order is submitted.
+var OrderMinerals = new Array();    //  List of all minerals in all orders
 var RefineryInvoice;                //  Sum of all refinery mineral stats.
 
 var SelectedRefinery;               //  The currently selected refinery.
@@ -78,7 +79,7 @@ const PopulateRefineryLists = (data) => {
         newInput.min = "0";
         newInput.step = "1";
         newInput.addEventListener("keydown", ValidateInput);
-        newInput.addEventListener("input", CalculateInitialStats);
+        newInput.addEventListener("input", RunOneElementCalculations);
         addCell(row).appendChild(newInput);
 
         let newCheckLabel = document.createElement("label");
@@ -112,7 +113,7 @@ const PopulateRefineryLists = (data) => {
     row.classList.add("Tier1");
 
     addCell(row, 0, true).id = "Summary-refine-cost";
-    addCell(row, 0, true).id = "Summary-scu-price";
+    addCell(row, "-", true).id = "Summary-scu-price";
     addCell(row, 0, true).id = "Summary-scu-yield";
     addCell(row, 0, true).id = "Summary-refine-duration-timer";
     addCell(row, 0, true).id = "Summary-profit";
@@ -130,30 +131,41 @@ const PopulateRefineryLists = (data) => {
         //  const item = JSON.stringify(value);             //  Convert value to Json string
         //  const item = JSON.parse(value);                 //  Convert Json string to object
 
-        const selectedRefinery = localStorage.getItem("selectedRefinery");
-        if (selectedRefinery !== null) {
-            SelectedRefinery = JSON.parse(selectedRefinery);
+        //  Initial refinery and process method selection.
+        SelectedRefinery = document.getElementById("Refineries").value;
+        SelectedProcessMethod = document.getElementById("processing_method").value;
+
+        const previouslySelectedRefinery = localStorage.getItem("SelectedRefinery");
+        if (previouslySelectedRefinery !== null) {
+            SelectedRefinery = JSON.parse(previouslySelectedRefinery);
             document.getElementById("Refineries").value = SelectedRefinery;
         }
 
-        const selectedProcess = localStorage.getItem("selectedProcess");
+        const selectedProcess = localStorage.getItem("SelectedProcess");
         if (selectedProcess !== null) {
             SelectedProcessMethod = JSON.parse(selectedProcess);
             document.getElementById("processing_method").value = SelectedProcessMethod;
         }
 
-        const orders = localStorage.getItem("refineryOrders");
-        if (orders !== null) {
-            RefineryOrders = JSON.parse(orders);
+        const minerals = localStorage.getItem("OrderMinerals");
+        if (minerals !== null) {
+            OrderMinerals = JSON.parse(minerals);
         }
 
-        const deliveryShips = localStorage.getItem("selectedShips");
+        const orders = localStorage.getItem("RefineryOrders");
+        if (orders !== null) {
+            RefineryOrders = JSON.parse(orders);
+            ResubmitSavedOrders();
+        }
+
+        const deliveryShips = localStorage.getItem("SelectedShips");
         if (deliveryShips !== null) {
             SelectedShips = JSON.parse(deliveryShips);
         }
     }
 
     ClearInputs();
+    RunAllElementCalculations();
 }
 
 //!------------------------------------------------------------------------------------------------
@@ -207,24 +219,24 @@ const uuidv4 = () => {
 
 
 
-
-
-
 //  ****************************************************************************************************
 //  *********************************************  Classes  ********************************************
 //  ****************************************************************************************************
 class RefineryOrder {
-    constructor() {
-        this.GUID = crypto.randomUUID();
+    constructor(guid = null) {
+        this.GUID = guid === null ? crypto.randomUUID() : guid;
         this.Refinery = null;
         this.Method = null;
-        this.Minerals = null;
         this.TotalYield = 0;
+        this.CreatedDate=0;
+        this.ProcessingTime=0;
+        this.TotalProfit=0;
     }
 }
 
 class Mineral {
     constructor(name) {
+        this.GUID = null;
         this.Name = name;
         this.RefineCost = 0;
         this.SCUPrice = 0;
