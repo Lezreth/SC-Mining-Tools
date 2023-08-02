@@ -14,7 +14,8 @@ button {
     justify-content: center;
     align-items: center;
     padding: 1em;
-    border: 0px solid transparent;
+    /* border: 0px solid transparent; */
+    border: 1px solid rgba(172, 70, 255, 0.7);
     background-color: rgba(100, 77, 237, 0.08);
     border-radius: 1.25em;
     cursor: pointer;
@@ -24,15 +25,15 @@ button {
 .ButtonBase svg {
     width: 25px;
     height: 25px;
-    fill: rgb(172, 70, 255);
-    stroke: rgb(172, 70, 255);
+    fill: var(--color-main-interface-fg);
+    stroke: var(--color-main-interface-fg);
     /* padding: 1em; */
     transition: 0.3s;
 }
 
 .ButtonBase span {
     /* width: 150px; */
-    color: rgb(172, 70, 255);
+    color: var(--color-main-interface-fg);
     /* position: absolute; */
     padding: 1em;
     /* opacity: 0; */
@@ -66,6 +67,7 @@ button {
 } */
 
 .ButtonPositive:hover {
+    border: 1px solid rgba(0, 255, 0, 0.7);
     background-color: rgba(0, 255, 0, 0.15);
     box-shadow: 0 0 4.9px rgba(0, 255, 0, 0.5),
         0 0 12px rgba(0, 255, 0, 0.5),
@@ -76,6 +78,7 @@ button {
 }
 
 .ButtonNegative:hover {
+    border: 1px solid rgba(255, 0, 0, 0.7);
     background-color: rgba(255, 0, 0, 0.15);
     box-shadow: 0 0 4.9px rgba(255, 0, 0, 0.5),
         0 0 12px rgba(255, 0, 0, 0.5),
@@ -105,6 +108,28 @@ button {
 .ButtonNegative:hover span {
     color: rgba(255, 0, 0, 1);
     transition: 0.3s;
+}
+
+.ButtonNegative:active {
+    border: 1px solid rgba(255, 0, 0, 0.1);
+    background-color: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 0 4.9px rgba(255, 0, 0, 0.1),
+        0 0 12px rgba(255, 0, 0, 0.1),
+        0 0 25px rgba(255, 0, 0, 0.1),
+        0 0 52.2px rgba(255, 0, 0, 0.1),
+        0 0 143px rgba(255, 0, 0, 0.1);
+    transition: 0.1s;
+}
+
+.ButtonPositive:active {
+    border: 1px solid rgba(0, 255, 0, 0.1);
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 4.9px rgba(0, 255, 0, 0.1),
+        0 0 12px rgba(0, 255, 0, 0.1),
+        0 0 25px rgba(0, 255, 0, 0.1),
+        0 0 52.2px rgba(0, 255, 0, 0.1),
+        0 0 143px rgba(0, 255, 0, 0.1);
+    transition: 0.1s;
 }
 
 /* .DeleteButton:focus {

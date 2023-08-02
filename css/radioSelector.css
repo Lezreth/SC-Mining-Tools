@@ -1,0 +1,75 @@
+:root {
+    --spread: 20px;
+    --color-bg-button: rgba(0, 255, 0, 0.2);
+    --color-fg-button: rgba(0, 255, 0, 1);
+}
+
+/* Hide the default checkbox */
+.radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radioContainer {
+    background-color: rgba(100, 77, 237, 0.08);
+    border: 1px solid rgba(172, 70, 255, 0.7);
+    border-radius: 1rem;
+    height: 3rem;
+    width: 8rem;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-main-interface-);
+    border-radius: 1rem;
+    transition: all 0.7s;
+}
+
+.radioContainer svg {
+    fill: rgba(172, 70, 255, 0.7);
+    stroke: rgba(172, 70, 255, 0.7);
+    padding: 5px 0;
+    height: 2.5rem;
+    width: 8rem;
+    transition: all 0.7s;
+}
+
+/* When the checkbox is checked, add a background */
+.radioContainer input:checked~.checkmark {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: -10px -10px var(--spread) 0px var(--color-bg-button),
+        0 -10px var(--spread) 0px var(--color-bg-button),
+        10px -10px var(--spread) 0px var(--color-bg-button),
+        10px 0 var(--spread) 0px var(--color-bg-button),
+        10px 10px var(--spread) 0px var(--color-bg-button),
+        0 10px var(--spread) 0px var(--color-bg-button),
+        -10px 10px var(--spread) 0px var(--color-bg-button);
+}
+
+/* Show the checkmark when checked */
+.radioContainer input:checked~.checkmark:after {
+    content: "Active";
+    text-align: center;
+    vertical-align: middle;
+    color: var(--color-fg-button);
+}
+
+.radioContainer input:checked~.checkmark {
+    fill: var(--color-fg-button);
+    stroke: var(--color-fg-button);
+}
+
+/* Style the checkmark/indicator */
+.radioContainer .checkmark:after {
+    content: "Select";
+}

@@ -28,10 +28,10 @@
 }
 
 /*****  Icon on left side of refinery orders  *****/
-.refineryBox {
-    float: left;
-    width: 40px;
-    height: 40px;
+.sendToShipBtn {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 /**********************************************************************/
@@ -65,7 +65,7 @@
 
 /*****  Label attached to the checkbox and clicked on in its place  *****/
 .orderlabel:hover {
-    background: hsl(0, 0%, 33%)
+    background: hsl(271, 34%, 15%)
 }
 
 /*****  Element that will be hidden  *****/

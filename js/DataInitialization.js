@@ -1,8 +1,8 @@
-var Refineries = new Array();;         //  Data.json - Places where minerals can be refined.
-var ProcessMethods = new Array();;     //  Data.json - Mineral process methods the refineries use.
-var Minerals = new Array();;           //  Data.json - Minerals that can be processed by refineries.
-var Multipliers = new Array();;        //  Data.json - Refinery process multipliers.
-var Ships = new Array();;              //  Data.json - Cargo ships.
+var Refineries = new Array();;      //  Data.json - Places where minerals can be refined.
+var ProcessMethods = new Array();;  //  Data.json - Mineral process methods the refineries use.
+var Minerals = new Array();;        //  Data.json - Minerals that can be processed by refineries.
+var Multipliers = new Array();;     //  Data.json - Refinery process multipliers.
+var Ships = new Array();;           //  Data.json - Cargo ships.
 
 var RefineryOrders = new Array();   //  Orders in the refinery.
 var RefineryMinerals = new Array(); //  Current state of all of the stats of the raw minerals before a work order is submitted.
@@ -11,33 +11,50 @@ var RefineryInvoice;                //  Sum of all refinery mineral stats.
 
 var SelectedRefinery;               //  The currently selected refinery.
 var SelectedProcessMethod;          //  The currently selected refinement process.
-var SelectedShips;                  //  Ships selected for deliveries, may also have refinery orders on board.
+var SelectedShips = new Array();    //  Ships selected for deliveries, may also have refinery orders on board.
 var CustomShipList;                 //  List of ships the user owns.
-
-var HasCustomShipList = false;  //  True = User has customized the delivery ship list.
+var ActiveShipID = "None";                   //  ID of the active ship where orders will be sent to.
+var HasCustomShipList = false;      //  True = User has customized the delivery ship list.
+var ActiveTab = "tabRefinery";      //  The currently active application tab.
+var OrderNumber = 0;                //  Used for creating unique html tag IDs for each refinery order.
+var CargoShipNumber = 0;            //  Used for creating unique html tag IDs for each cargo ship.
 
 //   **********************************************************************************************
 //!  Initialize all of the dynamic data elements.
 document.addEventListener("DOMContentLoaded", () => {
-    //  Fetch the support data and populate the lists.
-    const requestJsonURL = "/data/Data.json";
-    let refineryResponse = fetch(requestJsonURL)
-        .then((result) => result.json())
-        .then((data) => PopulateRefineryLists(data));
-
-    //  Fetch the ship data and populate the lists.
-    const requestShipURL = "/data/Ships.json";
-    let shipResponse = fetch(requestShipURL)
-        .then((result) => result.json())
-        .then((data) => Ships = data)
-        .then(() => GetCustomShipList())
-        .then(() => PopulateShipList());
+    GetJsonData();
 });
 
 
 //   **********************************************************************************************
+//!  Get the supporting data and run the population functions.
+function GetJsonData() {
+    const requestJsonURL = "/data/Data.json";
+    const requestShipURL = "/data/Ships.json";
+
+    //  Request files in parallel and return a Promise for both of them.
+    //  Promise.all - Returns a new Promise that resolves when all of its arguments resolve.
+    Promise.all([GetRemoteData(requestJsonURL), GetRemoteData(requestShipURL)])
+        .then(([generalData, shipData]) => {
+            //  Both datasets are loaded
+            PopulateRefineryLists(generalData);
+
+            Ships = shipData;
+            PopulateShipList();
+        });
+}
+
+//   **********************************************************************************************
+//!  Get data from the supplied URL.
+async function GetRemoteData(url) {
+    const response = await fetch(url);
+    return await response.json();
+}
+
+
+//   **********************************************************************************************
 //!  Populate the refinery lists.
-const PopulateRefineryLists = (data) => {
+function PopulateRefineryLists(data) {
     Refineries = data.Refineries;
     ProcessMethods = data.ProcessMethods;
     Minerals = data.Minerals;
@@ -130,7 +147,6 @@ const PopulateRefineryLists = (data) => {
         //  localStorage.clear();                           //  Delete all items from LocalStorage
         //  const item = JSON.stringify(value);             //  Convert value to Json string
         //  const item = JSON.parse(value);                 //  Convert Json string to object
-
         //  Initial refinery and process method selection.
         SelectedRefinery = document.getElementById("Refineries").value;
         SelectedProcessMethod = document.getElementById("processing_method").value;
@@ -177,8 +193,15 @@ const PopulateRefineryLists = (data) => {
 //!------------------------------------------------------------------------------------------------
 //   **********************************************************************************************
 //!  Populate the ship list.
-const PopulateShipList = () => {
-    const cargoShipList = document.getElementById("cargo_ships");  //  Cargo Ship DropDownList
+function PopulateShipList() {
+    //  Get the list of ships the user owns.
+    const customShips = localStorage.getItem("CustomShipsList");
+    if (customShips !== null) {
+        CustomShipList = JSON.parse(customShips);
+        HasCustomShipList = true;
+    }
+
+    const cargoShipList = document.getElementById("cargo_ships"); //  Cargo Ship DropDownList
     cargoShipList.replaceChildren();
 
     let obj = null;
@@ -191,30 +214,9 @@ const PopulateShipList = () => {
     obj.forEach(item => {
         var newOption = document.createElement("option");
         newOption.value = item.ShipCode;
-        newOption.text = item.MFDCode + " " + item.Name;
+        newOption.text = item.MFDCode + " " + item.Name + " | " + item.Capacity + " SCU";
         cargoShipList.add(newOption);
     });
-}
-
-
-//   **********************************************************************************************
-//!  Get the list of ships the user owns.
-const GetCustomShipList = () => {
-    const customShips = localStorage.getItem("customShipsList");
-    if (customShips !== null) {
-        CustomShipList = JSON.parse(customShips);
-        HasCustomShipList = true;
-        PopulateShipList(CustomShipList);
-    }
-}
-
-
-//   **********************************************************************************************
-//!  Fallback GUID Generator.
-const uuidv4 = () => {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
 }
 
 
@@ -228,9 +230,9 @@ class RefineryOrder {
         this.Refinery = null;
         this.Method = null;
         this.TotalYield = 0;
-        this.CreatedDate=0;
-        this.ProcessingTime=0;
-        this.TotalProfit=0;
+        this.CreatedDate = 0;
+        this.ProcessingTime = 0;
+        this.TotalProfit = 0;
     }
 }
 
@@ -243,6 +245,16 @@ class Mineral {
         this.MineralYield = 0;
         this.Duration = 0;
         this.Profit = 0;
+    }
+}
+
+class RefinerySummary {
+    constructor() {
+        this.TotalRefineCost = 0;
+        this.TotalPricePerSCU = 0;
+        this.TotalMineralYield = 0;
+        this.TotalDuration = 0;
+        this.TotalProfit = 0;
     }
 }
 
@@ -265,24 +277,28 @@ class ProcessingMethod {
 }
 
 class Ship {
-    constructor(mfdcode, manufacturer, shipcode, name, capacity) {
-        this.MFDCode = mfdcode;
+    constructor(mfdCode, manufacturer, shipCode, name, capacity) {
+        this.MFDCode = mfdCode;
         this.Manufacturer = manufacturer;
-        this.ShipCode = shipcode;
+        this.ShipCode = shipCode;
         this.Name = name;
         this.Capacity = capacity;
     }
 }
 
-class RefinerySummary {
-    constructor() {
-        this.TotalRefineCost = 0;
-        this.TotalPricePerSCU = 0;
-        this.TotalMineralYield = 0;
-        this.TotalDuration = 0;
-        this.TotalProfit = 0;
+class CargoShipInvoice {
+    constructor(guid = null) {
+        this.GUID = guid === null ? crypto.randomUUID() : guid;
+        this.ShipName = null;   //  Name of the ship
+        this.Capacity = 0;      //  Maximum amount of cargo the ship can hold
+        this.AmountFilled = 0;  //  Amount of cargo on the ship
+        this.CargoGUIDs = null;      //  List of GUIDs that belong to the work orders on the ship
     }
 }
+
+
+
+
 /*
 var Refineries = new Array();;         //  Data.json - Places where minerals can be refined.
 var ProcessMethods = new Array();;     //  Data.json - Mineral process methods the refineries use.

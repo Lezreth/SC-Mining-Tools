@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 60 60"
+   x="0px"
+   y="0px"
+   version="1.1"
+   id="svg343"
+   sodipodi:docname="pallet.svg"
+   width="60"
+   height="60"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs347" />
+  <sodipodi:namedview
+     id="namedview345"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="14.575"
+     inkscape:cx="28.370497"
+     inkscape:cy="32.521441"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg343" />
+  <path
+     d="m 59.955,50.7 -5,-16 A 1,1 0 0 0 54,34 H 53 V 11 c 0,-0.013 -0.007,-0.024 -0.008,-0.038 a 0.988,0.988 0 0 0 -0.063,-0.334 l -4,-9.9999997 A 1,1 0 0 0 48,3e-7 H 12 a 1,1 0 0 0 -0.929,0.628 L 7.071,10.628 A 0.988,0.988 0 0 0 7.008,10.962 C 7.008,10.976 7,10.987 7,11 V 34 H 6 a 1,1 0 0 0 -0.955,0.7 l -5,16 A 1.018,1.018 0 0 0 0.038,50.811 0.913,0.913 0 0 0 0,51 v 8 a 1,1 0 0 0 1,1 h 6 a 1,1 0 0 0 1,-1 v -3 h 18 v 3 a 1,1 0 0 0 1,1 h 6 a 1,1 0 0 0 1,-1 v -3 h 18 v 3 a 1,1 0 0 0 1,1 h 6 a 1,1 0 0 0 1,-1 V 51 A 0.913,0.913 0 0 0 59.962,50.813 1.018,1.018 0 0 0 59.955,50.7 Z M 33,54 H 2 v -2 h 56 v 2 z M 7,42 H 4.86 L 5.485,40 H 7 Z m 0,2 v 2 H 3.61 L 4.235,44 Z M 55.14,42 H 53 v -2 h 1.515 z M 53,48 h 4.015 l 0.625,2 H 53 Z m 0,-2 v -2 h 2.765 l 0.625,2 z m -2,4 H 31 V 32 H 51 Z M 51,30 H 31 V 12 H 51 Z M 29,30 H 9 V 12 H 29 Z M 9,32 H 29 V 50 H 9 Z m 44.265,4 0.625,2 H 53 V 36 Z M 31,10 V 7.0000003 H 49.323 L 50.523,10 Z M 48.523,5.0000003 H 31 v -3 h 16.323 z m -35.846,-3 H 29 v 3 H 11.477 Z m -2,5 H 29 V 10 H 9.477 Z M 7,36 v 2 H 6.11 L 6.735,36 Z M 3,47.953 V 48 h 4 v 2 H 2.36 Z M 6,58 H 2 v -2 h 4 z m 26,0 h -4 v -2 h 4 z m 26,0 h -4 v -2 h 4 z"
+     id="path311"
+     style="display:inline" />
+  <path
+     d="m 12,21 h 6 a 1,1 0 0 0 1,-1 v -5 a 1,1 0 0 0 -1,-1 h -6 a 1,1 0 0 0 -1,1 v 5 a 1,1 0 0 0 1,1 z m 1,-5 h 4 v 3 h -4 z"
+     id="path313" />
+  <path
+     d="m 34,21 h 6 a 1,1 0 0 0 1,-1 v -5 a 1,1 0 0 0 -1,-1 h -6 a 1,1 0 0 0 -1,1 v 5 a 1,1 0 0 0 1,1 z m 1,-5 h 4 v 3 h -4 z"
+     id="path315" />
+  <path
+     d="m 18,34 h -6 a 1,1 0 0 0 -1,1 v 5 a 1,1 0 0 0 1,1 h 6 a 1,1 0 0 0 1,-1 v -5 a 1,1 0 0 0 -1,-1 z m -1,5 h -4 v -3 h 4 z"
+     id="path317" />
+  <path
+     d="m 34,41 h 6 a 1,1 0 0 0 1,-1 v -5 a 1,1 0 0 0 -1,-1 h -6 a 1,1 0 0 0 -1,1 v 5 a 1,1 0 0 0 1,1 z m 1,-5 h 4 v 3 h -4 z"
+     id="path319" />
+</svg>
