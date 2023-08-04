@@ -1,8 +1,10 @@
-//   **********************************************************************************************
-//!  Test Button: Toggle the Mineral Load section.
-//   TODO  Change to a tab bar that shows/hides the appropriate sections
+//!   ****************************************************************************************************
+/**
+ * Test Button: Toggle the Mineral Load section.
+ * @param {event} event Holds the ID of the button that triggered the switch.
+ */
 function SwitchTabs(event) {
-    ActiveTab = event.srcElement.id;
+    ActiveTab = event.target.id;
     SwitchToTab();
 }
 
@@ -32,8 +34,10 @@ const SwitchToTab = () => {
 
 
 
-//   **********************************************************************************************
-//!  Clears all of the raw mineral input fields.
+//!   ****************************************************************************************************
+/**
+ * Clears all of the raw mineral input fields.
+ */
 function ClearInputs() {
     const elements = document.getElementsByClassName("rawSCUInput");
     for (let i = 0; i < elements.length; i++) {
@@ -60,8 +64,10 @@ function ClearInputs() {
 }
 
 
-//   **********************************************************************************************
-//!  Create a new refinery work order.
+//!   ****************************************************************************************************
+/**
+ * Create a new refinery work order.
+ */
 function SubmitNewWorkOrder() {
     if (!ValidateRawMinerals()) { return; }
 
@@ -105,8 +111,10 @@ function SubmitNewWorkOrder() {
 }
 
 
-//   **********************************************************************************************
-//!  Recreate refinery work orders that have been saved.
+//!   ****************************************************************************************************
+/**
+ * Recreate refinery work orders that have been saved.
+ */
 function ResubmitSavedOrders() {
     for (let i = 0; i < RefineryOrders.length; i++) {
         for (let j = 0; j < OrderMinerals.length; j++) {
@@ -118,9 +126,13 @@ function ResubmitSavedOrders() {
     }
 }
 
-//  ****************************************************************************************************
-//! ***************************  Add a new section to the Work Order table.  ***************************
-//  ****************************************************************************************************
+//!   ****************************************************************************************************
+/**
+ * Add a new section to the work order table.
+ * @param {RefinerySummary} orderInfo Contains the general information about a refinery order
+ * @param {Mineral} orderMinerals Contains the minerals this refinery order contains
+ * @returns None
+ */
 function AddWorkOrder(orderInfo, orderMinerals) {
     //  Test to see if the browser supports the HTML template element by checking for the presence of the template element's content attribute.
     if (!("content" in document.createElement("template"))) {
@@ -166,16 +178,16 @@ function AddWorkOrder(orderInfo, orderMinerals) {
     //  *************  This is where the magic happens: Fill in the order information here  *************
     //  =================================================================================================
     //  ****************************************  Order Summary  ****************************************
-    let location = addRow(orderHead);
+    let location = orderHead.insertRow();
     addCell(location, "Location", true);
     addCell(location, orderInfo.Refinery).colSpan = 3;
 
-    let method = addRow(orderHead);
+    let method = orderHead.insertRow();
     addCell(method, "Method", true);
     addCell(method, orderInfo.Method).colSpan = 3;
 
     //  Header row
-    let summaryHead = addRow(orderHead);
+    let summaryHead = orderHead.insertRow();
     addCell(summaryHead, "Total Yield", true);
     addCell(summaryHead, "Created", true);
     addCell(summaryHead, "Processing Time", true);
@@ -184,7 +196,7 @@ function AddWorkOrder(orderInfo, orderMinerals) {
     const date = new Date();
     const month = date.toLocaleString('default', { month: 'short' });
 
-    let summaryContent = addRow(orderHead);
+    let summaryContent = orderHead.insertRow();
     addCell(summaryContent, orderInfo.TotalMineralYield + " cSCU"); //  Total yield of minerals
     addCell(summaryContent, date.getDate() + " " + month); //  Date work order is created
     addCell(summaryContent, ConvertSecondsToTime(orderInfo.TotalDuration)); //  Total work order processing time
@@ -196,7 +208,7 @@ function AddWorkOrder(orderInfo, orderMinerals) {
     //  =================================================================================================
     //  ****************************************  Order Details  ****************************************
     for (const key in orderMinerals) {
-        let row = addRow(bodyTable);
+        let row = bodyTable.insertRow();
         addCell(row, orderMinerals[key].Name); //  Mineral Name
         addCell(row, orderMinerals[key].RefineCost).classList.add("textRight"); //  Refinement Cost
         addCell(row, orderMinerals[key].MineralYield).classList.add("textRight"); //  Yield
@@ -214,8 +226,10 @@ function AddWorkOrder(orderInfo, orderMinerals) {
 }
 
 
-//   **********************************************************************************************
-//!  Create a new cargo ship.
+//!   ****************************************************************************************************
+/**
+ * Create a new cargo ship.
+ */
 function SubmitNewCargoShip() {
     let cargoShip = new CargoShipInvoice();
 
@@ -228,36 +242,41 @@ function SubmitNewCargoShip() {
 
     SelectedShips.push(cargoShip);
 
-    //  TODO  Reenable localStorage when ready to implement page reload portion
-    // localStorage.setItem("SelectedShips", JSON.stringify(SelectedShips));
+    //  Save the ship manifest change to localStorage
+    localStorage.setItem("SelectedShips", JSON.stringify(SelectedShips));
     AddCargoShip(cargoShip);
 }
 
 
-//   **********************************************************************************************
-//!  Recreate cargo ships that have been saved.
+//!   ****************************************************************************************************
+/**
+ * Recreate cargo ships that have been saved.
+ */
 function ResubmitSavedCargoShips() {
-    for (let i = 0; i < SelectedShips.length; i++) {
-        AddCargoShip(SelectedShips[i]);
-    }
+    SelectedShips.forEach((ship) => {
+        AddCargoShip(ship);
 
-    //  TODO  Search for work orders that are attached to ships and move them accordingly
-    for (let i = 0; i < RefineryOrders.length; i++) {
-        //  Find work orders attached to this ship and move them to the cargo grid
-        //  On page refresh, orders will first be placed in the refinery
-        //  Then ship orders will be relocated after the ships have been reconstructed
-        //  Syntax: ShipOrderDropZoneTag.append(WorkOrderMainTag);
-        console.log(RefineryOrders[i]);
-    }
+        if (ship.CargoGUIDs.length === 0) { return; }
+
+        ship.CargoGUIDs.forEach((storedGUID) => {
+            RefineryOrders.forEach((order) => {
+                if (order.GUID !== storedGUID) { return; }
+                const orderID = document.querySelector(`[data-guid="` + storedGUID + `"]`).id.split('_')[0];
+                const shipID = document.querySelector(`[data-guid="` + ship.GUID + `"]`).id.split('_')[0];
+
+                AddToShip(orderID, shipID, false);
+            });
+        });
+    });
 }
 
 
-
-
-
-//  ****************************************************************************************************
-//! *****************************  Add a new cargo ship to the ship list.  *****************************
-//  ****************************************************************************************************
+//!   ****************************************************************************************************
+/**
+ * Add a new cargo ship to the ship list.
+ * @param {Ship} shipInfo Information about the selected ship
+ * @returns None
+ */
 function AddCargoShip(shipInfo) {
     //  Test to see if the browser supports the HTML template element by checking for the presence of the template element's content attribute.
     if (!("content" in document.createElement("template"))) {
@@ -317,16 +336,14 @@ function AddCargoShip(shipInfo) {
 }
 
 
-//   **********************************************************************************************
-//!  Insert a new row into the specified table.
-//!  Return: Reference to the row that was inserted.
-function addRow(table) {
-    return table.insertRow();
-}
-
-//   **********************************************************************************************
-//!  Insert a new cell into the specified row.
-//!  Return: Reference to the cell that was inserted.
+//!   ****************************************************************************************************
+/**
+ * Insert a new cell into the specified row.
+ * @param {HTMLTableRowElement} row Row to add a cell to
+ * @param {string} text Text to insert
+ * @param {boolean} bold True = Make inner text bold, False = Make inner text normal weight
+ * @returns {HTMLTableCellElement} Reference to the inserted cell
+ */
 function addCell(row, text = null, bold = false) {
     let cell = null;
     if (bold) {
@@ -344,9 +361,13 @@ function addCell(row, text = null, bold = false) {
 }
 
 
-//   **********************************************************************************************
-//!  Add cargo box slots to the designated ship.
-//
+//!   ****************************************************************************************************
+/**
+ * Add cargo box slots to the designated ship.
+ * @param {SVGElement} targetSVG SVG component that contains the visual representation of the ship's cargo grid
+ * @param {Number} quantity Amount of cargo space to represent, values are integers
+ * @returns None
+ */
 function AddBoxes(targetSVG, quantity) {
     const columnCount = 16;
     let rows = Math.floor(quantity / columnCount);
@@ -374,9 +395,14 @@ function AddBoxes(targetSVG, quantity) {
     }
 }
 
-//   **********************************************************************************************
-//!  Create a cargo box at the specified coordinates for appending to a cargo grid.
-//
+
+//!   ****************************************************************************************************
+/**
+ * Create a cargo box at the specified coordinates for appending to a cargo grid.
+ * @param {Number} x Horizontal position of the cargo box
+ * @param {Number} y Vertical position of the cargo box
+ * @returns {SVGUseElement} Cargo box to add to the grid
+ */
 function createCargoBox(x, y) {
     const box = document.createElementNS("http://www.w3.org/2000/svg", "use");
     box.setAttribute("href", "/img/icons.svg#CargoBox");
@@ -386,9 +412,12 @@ function createCargoBox(x, y) {
 }
 
 
-//   **********************************************************************************************
-//!  Fill the specified number of cargo boxes.
-//
+//!   ****************************************************************************************************
+/**
+ * Fill the specified number of cargo boxes.
+ * @param {SVGElement} targetSVG SVG component that contains the visual representation of the ship's cargo grid
+ * @param {Number} quantity Amount of cargo space that is filled, values are integers
+ */
 function FillBoxes(targetSVG, quantity) {
     const boxList = document.getElementById(targetSVG);
     const boxes = boxList.children;
@@ -414,12 +443,6 @@ function FillBoxes(targetSVG, quantity) {
 
 
 
-//   **********************************************************************************************
-//!  Add the work order to the selected transport ship.
-//
-function AddOrderToShip(element) {
-    return;
-}
 
 //   **********************************************************************************************
 //!  Delete the selected work order.
@@ -437,6 +460,12 @@ const DeleteOrder = (event) => {
 }
 
 
+//!   ****************************************************************************************************
+/**
+ * Retrieves the index of the order that contains the specified GUID.
+ * @param {String} ItemGUID GUID attached to the refinery order
+ * @returns {Number} Integer index of the requested order in RefineryOrders
+ */
 function getOrderIndex(ItemGUID) {
     for (let i = 0; i < RefineryOrders.length; i++) {
         if (ItemGUID !== RefineryOrders[i].GUID) { continue; }
@@ -447,6 +476,12 @@ function getOrderIndex(ItemGUID) {
 }
 
 
+//!   ****************************************************************************************************
+/**
+ * Retrieves the index of the ship that contains the specified GUID.
+ * @param {String} guid GUID attached to the ship
+ * @returns {Number} Integer index of the requested ship in SelectedShips
+ */
 function getShipIndex(guid) {
     for (let i = 0; i < SelectedShips.length; i++) {
         if (guid !== SelectedShips[i].GUID) { continue; }
@@ -457,6 +492,12 @@ function getShipIndex(guid) {
 }
 
 
+//!   ****************************************************************************************************
+/**
+ * Event for the Move Order button.  Moves the order to/from refinery <> Selected ship.
+ * @param {event} event Event object that holds the target ID
+ * @returns None
+ */
 function SendOrder(event) {
     const orderID = event.target.id.split("_")[0];
     const orderGUID = document.getElementById(orderID + "_Main").dataset.guid;
@@ -475,14 +516,20 @@ function SendOrder(event) {
     }
 
     //  If the order was not on a cargo ship, then its in the refinery, move it to the active ship
-    AddToShip(orderID);
+    AddToShip(orderID, ActiveShipID);
 }
 
 
-//   **********************************************************************************************
-//!  Move the selected order to the active ship.
-function AddToShip(orderID) {
+//!   ****************************************************************************************************
+/**
+ * Move the selected order to the active ship.
+ * @param {String} orderID ID of the element containing the order to add to a ship
+ * @param {String} shipID ID of the element containing the ship to add the order to
+ * @param {Boolean} newOrder True = This order is new to the specified ship, False = Ship is being repopulated after page refresh
+ */
+function AddToShip(orderID, shipID, newOrder = true) {
     const sendButton = document.getElementById(orderID + "_SendButtonLocation");
+    sendButton.classList.remove("Hidden");
     sendButton.classList.remove("floatRight");
     sendButton.classList.add("floatLeft");
 
@@ -490,25 +537,32 @@ function AddToShip(orderID) {
     const orderMain = document.getElementById(orderID + "_Main");
     const orderGUID = orderMain.dataset.guid;
 
-    const selectedShipGUID = document.getElementById(ActiveShipID + "_Main").dataset.guid;
+    const selectedShipGUID = document.getElementById(shipID + "_Main").dataset.guid;
     const shipIndex = getShipIndex(selectedShipGUID);
 
-    const orderSCU = Math.ceil(RefineryOrders[getOrderIndex(orderGUID)].TotalMineralYield / 100);
+    if (newOrder) {
+        const orderSCU = Math.ceil(RefineryOrders[getOrderIndex(orderGUID)].TotalMineralYield / 100);
 
-    //  Everything passed, add the order to the ship's manifest
-    SelectedShips[shipIndex].CargoGUIDs.push(orderGUID);
-    SelectedShips[shipIndex].AmountFilled += orderSCU;
+        //  Add the order to the ship's manifest
+        SelectedShips[shipIndex].CargoGUIDs.push(orderGUID);
+        SelectedShips[shipIndex].AmountFilled += orderSCU;
+    }
 
 
-    const activeShipOrderTable = document.getElementById(ActiveShipID + "_Orders");
+    const activeShipOrderTable = document.getElementById(shipID + "_Orders");
     activeShipOrderTable.append(orderMain);
 
-    UpdateShipAndRefinery(ActiveShipID);
+    UpdateShipAndRefinery(shipID, newOrder);
 }
 
 
-//   **********************************************************************************************
-//!  Move the selected order back to the refinery.
+//!   ****************************************************************************************************
+/**
+ * Move the selected order back to the refinery.
+ * @param {String} orderID ID of the element containing the order to remove from the ship
+ * @param {String} shipID ID of the element containing the ship to remove the order from
+ * @param {Number} oldShipIndex Integer index of the ship the order is being removed from
+ */
 function RemoveFromShip(orderID, shipID, oldShipIndex) {
     const sendButton = document.getElementById(orderID + "_SendButtonLocation");
     sendButton.classList.remove("floatLeft");
@@ -534,9 +588,13 @@ function RemoveFromShip(orderID, shipID, oldShipIndex) {
 }
 
 
-//   **********************************************************************************************
-//!  Update the details of the provided ship.
-function UpdateShipAndRefinery(shipID) {
+//!   ****************************************************************************************************
+/**
+ * Update the details of the provided ship.
+ * @param {String} shipID ID of the element containing the ship to update
+ * @param {Boolean} newOrder True = This order is new to the specified ship, False = Ship is being repopulated after page refresh
+ */
+function UpdateShipAndRefinery(shipID, newOrder = true) {
     const capacityLabel = document.getElementById(shipID + "_CargoGridCapacity");
     const shipGUID = document.getElementById(shipID + "_Main").dataset.guid;
     const shipIndex = getShipIndex(shipGUID);
@@ -551,25 +609,40 @@ function UpdateShipAndRefinery(shipID) {
     //  Update the move buttons
     ChangeSelectedShip(GenerateShipEventID(shipID));
 
-    //  TODO  Save the ship manifest change to localStorage
+    //  Save the ship manifest change to localStorage
+    if (newOrder) {
+        localStorage.setItem("SelectedShips", JSON.stringify(SelectedShips));
+    }
 }
 
 
-//   **********************************************************************************************
-//!  Create an ID chain for when simulating changing the active ship
-//!  Called whenever orders are added/removed from ships
+//!   ****************************************************************************************************
+/**
+ * Create an ID chain for when simulating changing the active ship.
+ * Called whenever orders are added/removed from ships.
+ * @param {String} shipID ID of the element containing the ship to update
+ * @returns {event} Pseudo event object, because the ID is all that is used
+ */
 function GenerateShipEventID(shipID) {
     let event = new Array();
-    event["srcElement"] = new Array();
-    event.srcElement["id"] = shipID;
+    event["target"] = new Array();
+    event.target["id"] = shipID;
     return event;
 }
 
-//   **********************************************************************************************
-//!  When the active ship changes, the order buttons are updated (visible/hidden)
+
+//!   ****************************************************************************************************
+/**
+ * When the active ship changes, the order buttons are updated (visible/hidden).
+ * @param {event} event Event object that holds the target ID
+ * @returns None
+ */
 function ChangeSelectedShip(event) {
-    const hasEvent = event.srcElement.id !== "None";
-    const selectedShipID = hasEvent ? event.srcElement.id.split("_")[0] : "None";
+    const tabBarStatus = document.querySelector('input[type="radio"][name="TabBar"]:checked');
+    if (tabBarStatus.id !== "tabCargoShip") { return; }
+
+    const hasEvent = event.target.id !== "None";
+    const selectedShipID = hasEvent ? event.target.id.split("_")[0] : "None";
     const selectedShipGUID = hasEvent ? document.getElementById(selectedShipID + "_Main").dataset.guid : "None";
     const shipIndex = hasEvent ? getShipIndex(selectedShipGUID) : -1; //  typeof(CargoShipInvoice) - The ship the order is trying to be loaded onto
     ActiveShipID = hasEvent ? selectedShipID : ActiveShipID;
@@ -598,16 +671,21 @@ function ChangeSelectedShip(event) {
     });
 }
 //?  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
+//+  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
+//+  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
 //?  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
-//?  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
-//?  -*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/-*/-*/-*/-*/-/*-*/-*/-*/-*/-*/
 
 
 
 
 
-//   **********************************************************************************************
-//!  Add/Remove class from element
+//!   ****************************************************************************************************
+/**
+ * Check to see if the specified element contains the specified class.
+ * @param {HTMLElement} el Element to look up
+ * @param {String} className Name of class to search for
+ * @returns {Boolean} True = Element contains the specified class, False = Element does not contain the specified class
+ */
 function hasClass(el, className) {
     if (el === null) { return; }
 
@@ -615,9 +693,14 @@ function hasClass(el, className) {
     return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
 }
 
-/// <summary>
-/// Add a class to the element.
-/// </summary>
+
+//!   ****************************************************************************************************
+/**
+ * Add a class to the element.
+ * @param {HTMLElement} el Element to add the class to
+ * @param {String} className Name of the class to add to the element
+ * @returns None
+ */
 function addClass(el, className) {
     if (el === null) { return; }
 
@@ -625,6 +708,14 @@ function addClass(el, className) {
     else if (!hasClass(el, className)) { el.className += " " + className; }
 }
 
+
+//!   ****************************************************************************************************
+/**
+ * Remove a class from the element.
+ * @param {HTMLElement} el Element to remove the class from
+ * @param {String} className Name of the class to remove
+ * @returns None
+ */
 function removeClass(el, className) {
     if (el === null) { return; }
 
@@ -636,7 +727,7 @@ function removeClass(el, className) {
 }
 
 
-//   **********************************************************************************************
+//!   ****************************************************************************************************
 //!  Customize Ship List
 //   TODO  Create the custom ship list customizer
 
@@ -644,9 +735,10 @@ function removeClass(el, className) {
 
 
 
-//   **********************************************************************************************
-//!  Calls calculations to be performed when the refinery or refinement process method are changed.
-//
+//!   ****************************************************************************************************
+/**
+ * Calls calculations to be performed when the refinery or refinement process method are changed.
+ */
 function RawMaterialCoreChange() {
     SelectedRefinery = document.getElementById("Refineries").value;
     SelectedProcessMethod = document.getElementById("processing_method").value;

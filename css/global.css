@@ -47,8 +47,9 @@ body {
     background: linear-gradient(to right bottom, var(--color-main-bg-top) 50%, var(--color-main-bg-bottom) 50%);
     background-attachment: fixed;
     color: var(--color-main-fg);
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* display: grid; */
     font-size: 100%;
     margin: 0;
 }
@@ -58,40 +59,46 @@ body {
     flex-flow: wrap;
     justify-content: space-between;
     padding: 5px;
-    height: 5vh;
+    /* height: 5svh; */
 }
 
 .flexParent {
+    /* display: inline-flex; */
     display: flex;
-    flex-wrap: wrap;
+    /* align-items: flex-start; */
+    align-items: stretch;
+    /* display: grid; */
+    /* max-height: 90svh; */
+    /* margin: 10px; */
     gap: 1rem;
-    height: 90vh;
-    margin: 10px;
     animation: fade-in 500ms forwards;
 }
 
 .flexChild {
-    margin: auto;
+    /* align-self: stretch; */
+    /* margin: auto; */
     /* margin: 10px; */
-    height: 92vh;
+    /* max-height: 92svh; */
     /* text-align: center; */
     /* font-size: 12pt; */
     /* display: flex; */
     /* overflow: visible; */
-    overflow: auto;
+    /* overflow: auto; */
+    overflow: scroll;
     /* flex-grow: 0.1; */
 }
 
+/* 
 .flexGrower {
     flex-grow: 0.15;
-}
+} */
 
 fieldset {
     background-color: var(--color-bg-forms);
     border-radius: 10px;
     border-color: var(--color-border-forms);
     /* width: fit-content; */
-    margin: auto;
+    /* margin: auto; */
     /* margin: 10px; */
     padding: 10px;
     box-shadow: 5px 5px 10px var(--color-main-drop-shadow);
@@ -121,11 +128,43 @@ fieldset {
 
 
 table {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     margin: 2px;
     border-collapse: collapse;
     padding: 2px 6px;
+}
+
+.RawMaterials {
+    /* margin: auto; */
+    /* margin: 10px; */
+    max-height: 60svh;
+    /* height: 200px; */
+    /* text-align: center; */
+    /* font-size: 12pt; */
+    /* display: flex; */
+    /* overflow: visible; */
+    overflow-y: auto;
+    /* overflow: auto; */
+    /* flex-grow: 0.1; */
+
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* table-layout: fixed; */
+}
+
+
+.RawMaterials thead,
+.RawMaterials tfoot {
+    position: sticky;
+}
+
+table thead {
+    inset-block-start: 0;
+}
+
+table tfoot {
+    inset-block-end: 0;
 }
 
 tr {
@@ -163,12 +202,6 @@ svg {
 .sideBySide {
     display: flex;
     align-items: center;
-}
-
-.RawMaterials {
-    margin-left: auto;
-    margin-right: auto;
-    table-layout: fixed;
 }
 
 .Material {
@@ -333,4 +366,5 @@ div:empty:not(:focus):before {
         opacity: 0;
     }
 }
+
 /*******************************/

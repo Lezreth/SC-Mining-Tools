@@ -1,33 +1,242 @@
-var Refineries = new Array();;      //  Data.json - Places where minerals can be refined.
-var ProcessMethods = new Array();;  //  Data.json - Mineral process methods the refineries use.
-var Minerals = new Array();;        //  Data.json - Minerals that can be processed by refineries.
-var Multipliers = new Array();;     //  Data.json - Refinery process multipliers.
-var Ships = new Array();;           //  Data.json - Cargo ships.
+//   ****************************************************************************************************
+//!  *********************************************  Classes  ********************************************
+//   ****************************************************************************************************
 
-var RefineryOrders = new Array();   //  Orders in the refinery.
-var RefineryMinerals = new Array(); //  Current state of all of the stats of the raw minerals before a work order is submitted.
-var OrderMinerals = new Array();    //  List of all minerals in all orders
-var RefineryInvoice;                //  Sum of all refinery mineral stats.
+/**
+ * Refinery order details.
+ */
+class RefineryOrder {
+    constructor(guid = null) {
+        this.GUID = guid === null ? crypto.randomUUID() : guid;
+        this.Refinery = null;
+        this.Method = null;
+        this.TotalYield = 0;
+        this.CreatedDate = 0;
+        this.ProcessingTime = 0;
+        this.TotalProfit = 0;
+    }
+}
 
-var SelectedRefinery;               //  The currently selected refinery.
-var SelectedProcessMethod;          //  The currently selected refinement process.
-var SelectedShips = new Array();    //  Ships selected for deliveries, may also have refinery orders on board.
-var CustomShipList;                 //  List of ships the user owns.
-var ActiveShipID = "None";                   //  ID of the active ship where orders will be sent to.
-var HasCustomShipList = false;      //  True = User has customized the delivery ship list.
-var ActiveTab = "tabRefinery";      //  The currently active application tab.
-var OrderNumber = 0;                //  Used for creating unique html tag IDs for each refinery order.
-var CargoShipNumber = 0;            //  Used for creating unique html tag IDs for each cargo ship.
 
-//   **********************************************************************************************
-//!  Initialize all of the dynamic data elements.
+/**
+ * Mineral details.
+ */
+class Mineral {
+    constructor(name) {
+        this.GUID = null;
+        this.Name = name;
+        this.RefineCost = 0;
+        this.SCUPrice = 0;
+        this.MineralYield = 0;
+        this.Duration = 0;
+        this.Profit = 0;
+    }
+}
+
+
+/**
+ * Refinery order summary.  Information displayed in the header for each order.
+ */
+class RefinerySummary {
+    constructor() {
+        this.TotalRefineCost = 0;
+        this.TotalPricePerSCU = 0;
+        this.TotalMineralYield = 0;
+        this.TotalDuration = 0;
+        this.TotalProfit = 0;
+    }
+}
+
+
+/**
+ * Basic information about each refinery.
+ */
+class Refinery {
+    constructor(name, location, system) {
+        this.Name = name;
+        this.Location = location;
+        this.System = system;
+    }
+}
+
+
+/**
+ * Details about each processing method.  Contains the numbers required for processing calculations.
+ */
+class ProcessingMethod {
+    constructor(name, speed, cost, Yield) {
+        this.Name = name;
+        this.Speed = speed;
+        this.Cost = cost;
+        this.Yield = Yield;
+    }
+}
+
+
+/**
+ * Information about each cargo ship.
+ */
+class Ship {
+    constructor(mfdCode, manufacturer, shipCode, name, capacity) {
+        this.MFDCode = mfdCode;
+        this.Manufacturer = manufacturer;
+        this.ShipCode = shipCode;
+        this.Name = name;
+        this.Capacity = capacity;
+    }
+}
+
+
+/**
+ * Information about the cargo ship invoices.
+ */
+class CargoShipInvoice {
+    constructor(guid = null) {
+        this.GUID = guid === null ? crypto.randomUUID() : guid;
+        this.ShipName = null;   //  Name of the ship
+        this.Capacity = 0;      //  Maximum amount of cargo the ship can hold
+        this.AmountFilled = 0;  //  Amount of cargo on the ship
+        this.CargoGUIDs = new Array(String);      //  List of GUIDs that belong to the work orders on the ship
+    }
+}
+
+
+//   ****************************************************************************************************
+//!  ****************************************  Global Variables  ****************************************
+//   ****************************************************************************************************
+
+
+/**
+ * Array type: Refinery.
+ * From Data.json - Places where minerals can be refined.
+ */
+var Refineries = new Array();
+
+/**
+ * Array type: ProcessingMethod.
+ * From Data.json - Mineral process methods refineries use.
+ */
+var ProcessMethods = new Array();
+
+/**
+ * Array type: Mineral.
+ * From Data.json - Minerals that can be processed by refineries.
+ */
+var Minerals = new Array();
+
+/**
+ * Array type determined by JSON file.
+ * From Data.json - Refinery process multipliers.
+ */
+var Multipliers = new Array();
+
+/**
+ * Array type: Ship.
+ * From Data.json - Cargo ships.
+ */
+var Ships = new Array();
+
+//!   ****************************************************************************************************
+
+/**
+ * Array type: RefineryOrder.
+ * Orders in the refinery.
+ */
+var RefineryOrders = new Array();
+
+/**
+ * Array type: Mineral.
+ * Current state of all of the stats of the raw minerals before a work order is submitted.
+ */
+var RefineryMinerals = new Array();
+
+/**
+ * Array type: Mineral.
+ * List of all minerals in all orders.
+ */
+var OrderMinerals = new Array();
+
+/**
+ * typeof(RefinerySummary).
+ * Sum of all refinery mineral stats.
+ */
+var RefineryInvoice = new RefinerySummary();
+
+//!   ****************************************************************************************************
+
+/**
+ * The code for the currently selected refinery.
+ */
+var SelectedRefinery = String;
+
+/**
+ * The code for the currently selected refinement process.
+ */
+var SelectedProcessMethod = String;
+
+/**
+ * Array type: CargoShipInvoice.
+ * Ships selected for deliveries, may also have refinery orders on board.
+ */
+var SelectedShips = new Array();
+
+/**
+ * Array type: String.
+ * List of ships the user owns.
+ */
+var CustomShipList = Array();
+
+//!   ****************************************************************************************************
+
+/**
+ * typeof(String).
+ * ID of the active ship where orders will be sent to.
+ */
+var ActiveShipID = "None";
+
+/**
+ * typeof(Boolean).
+ * True = User has customized the cargo ship list.
+ */
+var HasCustomShipList = false;
+
+/**
+ * typeof(String).
+ * The currently active application tab.
+ */
+var ActiveTab = "tabRefinery";
+
+/**
+ * typeof(Number).
+ * Used for creating unique html tag IDs for each refinery order.
+ */
+var OrderNumber = 0;
+
+/**
+ * typeof(Number).
+ * Used for creating unique html tag IDs for each cargo ship.
+ */
+var CargoShipNumber = 0;
+
+
+//   ****************************************************************************************************
+//!  ********************************************  Functions  *******************************************
+//   ****************************************************************************************************
+
+
+//!   ****************************************************************************************************
+/**
+ * Initialize all of the dynamic data elements.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     GetJsonData();
 });
 
 
-//   **********************************************************************************************
-//!  Get the supporting data and run the population functions.
+//!   ****************************************************************************************************
+/**
+ * Get the supporting data and run the population functions.
+ */
 function GetJsonData() {
     const requestJsonURL = "/data/Data.json";
     const requestShipURL = "/data/Ships.json";
@@ -44,16 +253,24 @@ function GetJsonData() {
         });
 }
 
-//   **********************************************************************************************
-//!  Get data from the supplied URL.
+
+//!   ****************************************************************************************************
+/**
+ * Get data from the supplied URL.
+ * @param {String} url Path and name of the file to retrieve
+ * @returns Contents of the fetched file in JSON format
+ */
 async function GetRemoteData(url) {
     const response = await fetch(url);
     return await response.json();
 }
 
 
-//   **********************************************************************************************
-//!  Populate the refinery lists.
+//!   ****************************************************************************************************
+/**
+ * Populate the refinery lists.
+ * @param {Object} data Data from JSON file formatted as class sections
+ */
 function PopulateRefineryLists(data) {
     Refineries = data.Refineries;
     ProcessMethods = data.ProcessMethods;
@@ -83,8 +300,10 @@ function PopulateRefineryLists(data) {
 
     //  Add minerals to the mineral table.
     const mineralList = document.getElementById("RefineryRawMaterials");
+    const mineralSummary = document.getElementById("RefineryRawMaterialSummary");
     for (const key in Minerals) {
-        let row = addRow(mineralList);
+        let row = document.createElement("tr");
+        mineralList.appendChild(row);
         addCell(row, key, true).classList.add(Minerals[key].Tier);
 
         let newInput = document.createElement("input");
@@ -123,7 +342,8 @@ function PopulateRefineryLists(data) {
     }
 
     //  Summary row
-    const row = addRow(mineralList);
+    const row = document.createElement("tr");
+    mineralSummary.appendChild(row);
     addCell(row, "Invoice Summary", true).id = "RawMaterialSummary";
     const summaryRow = document.getElementById("RawMaterialSummary");
     summaryRow.colSpan = 4;
@@ -177,6 +397,7 @@ function PopulateRefineryLists(data) {
         const deliveryShips = localStorage.getItem("SelectedShips");
         if (deliveryShips !== null) {
             SelectedShips = JSON.parse(deliveryShips);
+            ResubmitSavedCargoShips();
         }
     }
 
@@ -184,15 +405,11 @@ function PopulateRefineryLists(data) {
     RunAllElementCalculations();
 }
 
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//!------------------------------------------------------------------------------------------------
-//   **********************************************************************************************
-//!  Populate the ship list.
+
+//!   ****************************************************************************************************
+/**
+ * Populate the ship list.
+ */
 function PopulateShipList() {
     //  Get the list of ships the user owns.
     const customShips = localStorage.getItem("CustomShipsList");
@@ -218,91 +435,3 @@ function PopulateShipList() {
         cargoShipList.add(newOption);
     });
 }
-
-
-
-//  ****************************************************************************************************
-//  *********************************************  Classes  ********************************************
-//  ****************************************************************************************************
-class RefineryOrder {
-    constructor(guid = null) {
-        this.GUID = guid === null ? crypto.randomUUID() : guid;
-        this.Refinery = null;
-        this.Method = null;
-        this.TotalYield = 0;
-        this.CreatedDate = 0;
-        this.ProcessingTime = 0;
-        this.TotalProfit = 0;
-    }
-}
-
-class Mineral {
-    constructor(name) {
-        this.GUID = null;
-        this.Name = name;
-        this.RefineCost = 0;
-        this.SCUPrice = 0;
-        this.MineralYield = 0;
-        this.Duration = 0;
-        this.Profit = 0;
-    }
-}
-
-class RefinerySummary {
-    constructor() {
-        this.TotalRefineCost = 0;
-        this.TotalPricePerSCU = 0;
-        this.TotalMineralYield = 0;
-        this.TotalDuration = 0;
-        this.TotalProfit = 0;
-    }
-}
-
-class Refinery {
-    constructor(name, location, system) {
-        this.Name = name;
-        this.Location = location;
-        this.System = system;
-    }
-}
-
-class ProcessingMethod {
-    constructor(name, code, speed, cost, mineralYield) {
-        this.Name = name;
-        this.Code = code;
-        this.Speed = speed;
-        this.Cost = cost;
-        this.MineralYield = mineralYield;
-    }
-}
-
-class Ship {
-    constructor(mfdCode, manufacturer, shipCode, name, capacity) {
-        this.MFDCode = mfdCode;
-        this.Manufacturer = manufacturer;
-        this.ShipCode = shipCode;
-        this.Name = name;
-        this.Capacity = capacity;
-    }
-}
-
-class CargoShipInvoice {
-    constructor(guid = null) {
-        this.GUID = guid === null ? crypto.randomUUID() : guid;
-        this.ShipName = null;   //  Name of the ship
-        this.Capacity = 0;      //  Maximum amount of cargo the ship can hold
-        this.AmountFilled = 0;  //  Amount of cargo on the ship
-        this.CargoGUIDs = null;      //  List of GUIDs that belong to the work orders on the ship
-    }
-}
-
-
-
-
-/*
-var Refineries = new Array();;         //  Data.json - Places where minerals can be refined.
-var ProcessMethods = new Array();;     //  Data.json - Mineral process methods the refineries use.
-var Minerals = new Array();;           //  Data.json - Minerals that can be processed by refineries.
-var Multipliers = new Array();;        //  Data.json - Refinery process multipliers.
-var Ships = new Array();;              //  Data.json - Cargo ships.
-*/
